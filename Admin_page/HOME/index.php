@@ -5,7 +5,6 @@
 <?php
 include("../shared/header.php");
 ?>
-<div class="content-wrapper">
 <section class="content">
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
@@ -21,7 +20,7 @@ include("../shared/header.php");
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <!-- <a href="@Url.Action("Index","HOADONs")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                    <a href="tongdondathang.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -36,7 +35,7 @@ include("../shared/header.php");
                     <div class="icon">
                         <i class="ion-ios-phone-portrait"></i>
                     </div>
-                    <a href="@Url.Action("Index","SANPHAMs")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="../SANPHAM/Index.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -51,7 +50,7 @@ include("../shared/header.php");
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="@Url.Action("Index","KHACHHANGs")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="../KHACHHANG/Index.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -66,7 +65,7 @@ include("../shared/header.php");
                     <div class="icon">
                         <i class="ion ion-ios-people"></i>
                     </div>
-                    <a href="@Url.Action("Index","NHANVIENs")" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="../NHANVIEN/Index.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

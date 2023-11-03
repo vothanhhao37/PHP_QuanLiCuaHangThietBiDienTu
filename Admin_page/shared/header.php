@@ -34,8 +34,6 @@
     <div class="wrapper">
 
         <!-- Preloader -->
-       
-
         <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
@@ -44,7 +42,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Trang chủ</a>
+                    <a href="admin/pages/home.php" class="nav-link">Trang chủ</a>
                 </li>
                 
             </ul>
@@ -125,7 +123,7 @@
                         <img src="../../Content/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <!-- <a href="#" class="d-block">@Session["TENNV"]</a> <a href="@Url.Action("DangXuat","DangNhap")"><i class="fa fa-sign-out-alt"></i></a> -->
+                        <a href="#" class="d-block"></a> <a href="logout.php"><i class="fa fa-sign-out-alt"></i></a>
                     </div>
                 </div>
 
@@ -135,50 +133,42 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-header">Quản lí</li>
                         <li class="nav-item">
-                            <a href="../HOADONs/index.php" class="nav-link">
+                            <a href="../HOADON/Index.php" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Quản lí hóa đơn
-
                                 </p>
                             </a>
 
                         </li>
                         <li class="nav-item">
-                        <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                    Quản lí chi tiết hóa đơn
+                            <a href="chitiethoadon.php" class="nav-link">
+                            <i class="nav-icon fas fa-file-invoice"></i>                                    Quản lí chi tiết hóa đơn
                                 </p>
                             </a>
 
                         </li>
                         <li class="nav-item">
-                        <a href="#" class="nav-link">
+                            <a href="sanpham.php" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Quản lí sản phẩm
                                 </p>
                             </a>
                         </li>
-                        <!-- @{
-                            var check = Session["isAdmin"];
-                            if (check.ToString() == "True")
-                            {
+                            if is admin show
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Index","NHANVIENs")" class="nav-link">
-                                        <i class="nav-icon fas fa-copy"></i>
+                                    <a href="nhanvien.php" class="nav-link">
+                                        <i class="nav-icon ion ion-ios-people"></i>
                                         <p>
                                             Quản lí nhân viên
                                         </p>
                                     </a>
 
                                 </li>
-                            }
-                        } -->
                         <li class="nav-item">
-                        <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
+                            <a href="khachhang.php" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Quản lí khách hàng
                                 </p>
@@ -186,16 +176,16 @@
 
                         </li>
                         <li class="nav-item">
-                        <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
+                            <a href="thuonghieu.php" class="nav-link">
+                                <i class="nav-icon fas fa-star"></i>
                                 <p>
                                     Quản lí thương hiệu
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                        <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
+                            <a href="thongsokythuat.php" class="nav-link">
+                                <i class="nav-icon fas fa-info"></i>
                                 <p>
                                     Quản lí thông số kỹ thuật
                                 </p>
@@ -203,8 +193,8 @@
                         </li>
                         <li class="nav-header">Thống kê</li>
                         <li class="nav-item">
-                        <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
+                            <a href="thongkedoanhthu.php" class="nav-link">
+                                <i class="nav-icon fas fa-dollar-sign"></i>
                                 <p>
                                     Thống kê doanh thu
                                 </p>
@@ -213,20 +203,52 @@
                         </li>
                         <li class="nav-header">Tính toán</li>
                         <li class="nav-item">
-                        <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
+                            <a href="tinhtoansoluongbanhang.php" class="nav-link">
+                                <i class="nav-icon fas fa-box"></i>
                                 <p>
-                                    Số lượng sản phẩm bán được theo loại sản phẩm
+                                    Sản phẩm bán được
                                 </p>
                             </a>
 
                         </li>
+                        <!-- make space at bottom of the sidebar -->
+                        <li class="nav-header"></li>
+                        <li class="nav-item">
+                                <p>
+                                </p>
+                            </a>
 
+                        </li>                        <li class="nav-header"></li>
+                        <li class="nav-item">
+                                <p>
+                                </p>
+                            </a>
 
+                        </li>                        <li class="nav-header"></li>
+                        <li class="nav-item">
+                                <p>
+                                </p>
+                            </a>
+
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
         </aside>
+       
+        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+
+            <!-- Render body here -->
+            <!-- Content Header (Page header) -->
+            <!-- connect database -->
+            <?php require("../../db_connect.php"); ?>
+            <!-- function -->
+            <?php 
+            function navigateToPage(string $path, string $alert = "", string $alert_type = "none")
+            {
+                echo "<script>window.location.href = '$path". "?alert=" . urlencode($alert) . "&alert_type=" . urlencode($alert_type) . "'</script>";
+            }
+            ?>
