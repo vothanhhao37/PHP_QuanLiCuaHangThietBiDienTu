@@ -142,14 +142,14 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="chitiethoadon.php" class="nav-link">
+                            <a href="../CHITIETHOADON/Index.php" class="nav-link">
                             <i class="nav-icon fas fa-file-invoice"></i>                                    Quản lí chi tiết hóa đơn
                                 </p>
                             </a>
 
                         </li>
                         <li class="nav-item">
-                            <a href="sanpham.php" class="nav-link">
+                            <a href="../SANPHAM/Index.php" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Quản lí sản phẩm
@@ -212,25 +212,7 @@
 
                         </li>
                         <!-- make space at bottom of the sidebar -->
-                        <li class="nav-header"></li>
-                        <li class="nav-item">
-                                <p>
-                                </p>
-                            </a>
-
-                        </li>                        <li class="nav-header"></li>
-                        <li class="nav-item">
-                                <p>
-                                </p>
-                            </a>
-
-                        </li>                        <li class="nav-header"></li>
-                        <li class="nav-item">
-                                <p>
-                                </p>
-                            </a>
-
-                        </li>
+                        <li class="nav-item" style="height: 100px;"></li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -243,12 +225,9 @@
 
             <!-- Render body here -->
             <!-- Content Header (Page header) -->
-            <!-- connect database -->
-            <?php require("../../db_connect.php"); ?>
-            <!-- function -->
+            <!-- Link some php page -->
             <?php 
-            function navigateToPage(string $path, string $alert = "", string $alert_type = "none")
-            {
-                echo "<script>window.location.href = '$path". "?alert=" . urlencode($alert) . "&alert_type=" . urlencode($alert_type) . "'</script>";
-            }
+            require("../../db_connect.php"); 
+            require("../shared/function.php");
             ?>
+            

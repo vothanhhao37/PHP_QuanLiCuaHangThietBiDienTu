@@ -37,31 +37,15 @@ $employeeName = $row['tennv'];
 $createAt = $row['ngaytao'];
 $status = $row['tinhtrangdonhang'];
 
-if (isset($_POST['delete'])) {
-    //Kiểm tra xem có xung đột khóa ngoại hay không (bảng chi tiết hóa đơn)
-    $getAllForeignID_sql = "SELECT mahoadon FROM chitiethoadon";
-    $allForeignID = mysqli_query($conn, $getAllForeignID_sql);
-    while ($checker = mysqli_fetch_row($allForeignID)) {
-        if ($_GET["id"] == $checker[0]) {
-            $alert_type = "alert alert-danger";
-            $alert = "Hãy xóa các bản ghi có liên quan trước!";
-            toPage("./Delete.php",$alert,$alert_type,$id);
-        }
-    }
-    $delete_sql = "DELETE FROM hoadon WHERE hoadon.mahoadon = '$id';";
-    mysqli_query($conn, $delete_sql); {
-        $alert_type = "alert alert-success";
-        $alert = "Xóa hóa đơn thành công.";
-        toPage("./Index.php",$alert,$alert_type);
-    }
+if (isset($_POST['edit'])) {
+    toPage("./Edit.php","","",$id);
 }
 ?>
 <!-- Start body -->
 
 <div class="container">
-    <h2 style="text-align:center">Xóa đơn hàng</h2>
+    <h2 style="text-align:center">Thông tin đơn hàng</h2>
     <?php include("../shared/alert.php"); ?>
-    <h3>Bạn có chắc muốn xóa</h3>
     <a href="./Index.php" class="btn btn-primary">Trở về</a>
     <div>
 
@@ -107,7 +91,7 @@ if (isset($_POST['delete'])) {
 
         </dl>
         <form action="" method="post" class="form-actions no-color">
-            <input type="submit" value="Xóa" name="delete" class="btn btn-danger" />
+            <input type="submit" value="Chỉnh sửa" name="edit" class="btn btn-primary " />
         </form>
     </div>
 

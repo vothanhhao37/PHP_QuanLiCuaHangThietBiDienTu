@@ -52,7 +52,7 @@ $result = mysqli_query($conn, $sql);
                 <td>
                     <?php echo $row[5] ?>
                 </td>
-                <td>
+                <td width="120px">
                     <a href="./Edit.php?id=<?php echo $row[0]?>"><img src="../../Images/edit.png" alt="Edit" class="icon" width="30"></a>
                     <a href="./Details.php?id=<?php echo $row[0]?>"><img src="../../Images/details.png" alt="detail" class="icon" width="30"></a>
                     <a href="./Delete.php?id=<?php echo $row[0]?>"><img src="../../Images/delete.png" alt="delete" class="icon" width="30"></a>

@@ -14,7 +14,7 @@ if (isset($_POST["taomoi"])) {
     $sql = "INSERT INTO HOADON VALUES ('$maHoaDon', '" . $_POST['maNV'] . "', '" . $_POST['maKH'] . "', 
 '" . $_POST['ngaytaohoadon'] . "', '" . $_POST['tinhtrang'] . "')";
     $result = mysqli_query($conn, $sql);
-    navigateToPage("./Index.php","Thêm hóa đơn thành công!","alert alert-success");
+    toPage("./Index.php","Thêm hóa đơn thành công!","alert alert-success");
 }
 
 ?>
@@ -24,7 +24,7 @@ if (isset($_POST["taomoi"])) {
 
     <form action="" method="POST">
         <div class="form-horizontal">
-            <h2>Điền vào hóa đơn</h2>
+            <a class="btn btn-primary" href="Index.php">Trở về trang danh sách</a>
             <div class="form-group">
                 <label>Mã hóa đơn </label>
                 <input type="text" class="form-control ml-2" readonly value="<?php echo $maHoaDon ?>" name="MAHP" style="width:82%">
@@ -70,7 +70,6 @@ if (isset($_POST["taomoi"])) {
                 <label>Ngày tạo hóa đơn</label>
                 <div class="col-md-10">
                     <input type="date" class="form-control" name="ngaytaohoadon">
-
                 </div>
             </div>
 
@@ -89,14 +88,13 @@ if (isset($_POST["taomoi"])) {
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Tạo mới hóa đơn" class="btn btn-default" name="taomoi" />
+                    <input type="submit" value="Tạo mới hóa đơn" class="btn btn-success" name="taomoi" />
                 </div>
             </div>
     </form>
 </div>
 
 <div>
-    <a href="Index.php">Trở về trang danh sách</a>
 </div>
 
 </div>
