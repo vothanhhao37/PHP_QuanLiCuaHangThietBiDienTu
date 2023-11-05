@@ -57,10 +57,10 @@ include("../shared/header.php");
                                 </td>
 
                                 <td>
-                                        <a href="./Edit.php">
+                                        <a href="./Edit.php?maSP=<?php echo $row['MASP']?>">
                                                 <img src="../../Images/edit.png" alt="Edit" class="icon" width="30px">
                                         </a>
-                                        <a href="./Detail.php" >
+                                        <a href="./Details.php?maSP=<?php echo $row['MASP']?>" >
                                                 <img src="../../Images/details.png" alt="Detail" class="icon" width="30px">
                                         </a>
                                         <a href="./Delete.php">
