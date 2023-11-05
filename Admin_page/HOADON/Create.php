@@ -39,7 +39,7 @@ if (isset($_POST["taomoi"])) {
                 <div class="col-md-10">
                     <select name="maNV" id="" class="form-control">
                         <?php while ($row = mysqli_fetch_row($result)) {
-                            echo "<option selected value='$row[0]'>$row[0]</option>";
+                            echo "<option value='$row[0]'>$row[0]</option>";
                         } ?>
 
                     </select>
@@ -57,7 +57,7 @@ if (isset($_POST["taomoi"])) {
                 <div class="col-md-10">
                     <select name="maKH" id="" class="form-control">
                         <?php while ($row = mysqli_fetch_row($result)) {
-                            echo "<option selected value='$row[0]'>$row[0]</option>";
+                            echo "<option value='$row[0]'>$row[0]</option>";
                         } ?>
 
                     </select>

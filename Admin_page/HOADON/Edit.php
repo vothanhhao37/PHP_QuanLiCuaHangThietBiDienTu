@@ -26,6 +26,7 @@ if ($check == true) {
     $alert = "Mã hóa đơn không tồn tại.";
     toPage("./Index.php",$alert,$alert_type);
 }
+
 $id = $_GET["id"];
 $sql = "SELECT * from hoadon WHERE hoadon.MAHOADON = '$id'";
 $result = mysqli_query($conn, $sql);
@@ -41,7 +42,7 @@ if (isset($_POST["edit"])) {
     $employeeID = $_POST["maNV"];
     $createAt = $_POST["ngaytaohoadon"];
     $status = $_POST["tinhtrang"];
-    $sql = "UPDATE hoadon SET makh = '$customerID', manv = '$employeeID', ngaytao = '$createAt', tinhtrangdonhang = '$status' WHERE mahoadon = '$id';";
+    $sql = "UPDATE hoacdon SET makh = '$customerID', manv = '$employeeID', ngaytao = '$createAt', tinhtrangdonhang = '$status' WHERE mahoadon = '$id';";
     mysqli_query($conn, $sql);
     toPage("./Index.php","Chỉnh sửa hóa đơn thành công!","alert alert-success");
 }

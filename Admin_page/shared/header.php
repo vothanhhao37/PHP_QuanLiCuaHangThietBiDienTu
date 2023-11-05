@@ -158,7 +158,7 @@
                         </li>
                             if is admin show
                                 <li class="nav-item">
-                                    <a href="nhanvien.php" class="nav-link">
+                                    <a href="../NHANVIEN/Index.php" class="nav-link">
                                         <i class="nav-icon ion ion-ios-people"></i>
                                         <p>
                                             Quản lí nhân viên
@@ -229,5 +229,6 @@
             <?php 
             require("../../db_connect.php"); 
             require("../shared/function.php");
+
             ?>
             
