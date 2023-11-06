@@ -17,7 +17,7 @@
                                 if (mysqli_num_rows($result) <> 0) {
                                     while ($rows = mysqli_fetch_assoc($result)) {
                                         echo "<li>";
-                                        echo "<a href='../LOAISANPHAM/SanPhamTheoLoai.php?id= {$rows['TENLOAISP']}'>{$rows["TENLOAISP"]}</a>";
+                                        echo "<a href='../LOAISANPHAM/DanhSachSanPham.php?id= {$rows['MALOAISP']}'>{$rows["TENLOAISP"]}</a>";
                                         echo "</li>";
 
                                     }

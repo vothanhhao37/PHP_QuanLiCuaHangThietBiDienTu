@@ -16,14 +16,13 @@ if (!isset($_GET['page'])) {
 $offset = ($_GET['page'] - 1) * $rowsPerPage;
 $listSanPham = mysqli_query($conn, "SELECT * FROM sanpham join thuonghieu on sanpham.MATH = thuonghieu.MATH join thongsokythuat on 
 sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP
-
-WHERE LOWER(TENSP) LIKE '%" . strtolower($id) . "%' OR LOWER(MASP) LIKE '%" . strtolower($id) . "%'
+WHERE LOWER(TENSP) LIKE '%" . strtolower($id) . "%' OR LOWER(MASP) LIKE '%" . strtolower($id) . "%' or sanpham.MALOAISP = '$id'
 ORDER BY DONGIA $order
 LIMIT $offset , $rowsPerPage");
 //tổng số mẩu tin cần hiển thị
 $re = mysqli_query($conn, "SELECT * FROM sanpham join thuonghieu on sanpham.MATH = thuonghieu.MATH join thongsokythuat on 
 sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP
-WHERE LOWER(TENSP) LIKE '%" . strtolower($id) . "%' OR LOWER(MASP) LIKE '%" . strtolower($id) . "%'");
+WHERE LOWER(TENSP) LIKE '%" . strtolower($id) . "%' OR LOWER(MASP) LIKE '%" . strtolower($id) . "%' or sanpham.MALOAISP = '$id' ");
 $numRows = mysqli_num_rows($re);
 //tổng số trang
 $maxPage = ceil($numRows / $rowsPerPage);
