@@ -4,15 +4,16 @@ require("../shared/header.php")
 <!-- Start body -->
 
 <?php
-$sql = "SELECT MASP, TENSP, DONGIA, SOLUONG, loaisanpham.TENLOAISP , thuonghieu.TENTHUONGHIEU FROM sanpham, thuonghieu, loaisanpham WHERE sanpham.MATH = thuonghieu.MATH and loaisanpham.MALOAISP = sanpham.MALOAISP;";
+$sql = "SELECT MASP, TENSP, DONGIA, SOLUONG, loaisanpham.TENLOAISP , thuonghieu.TENTHUONGHIEU FROM sanpham, thuonghieu, loaisanpham WHERE sanpham.MATH = thuonghieu.MATH and loaisanpham.MALOAISP = sanpham.MALOAISP order by sanpham.masp;";
 $result = mysqli_query($conn, $sql);
-$rowsPerPage = 5; //số mẩu tin trên mỗi trang
+$rowsPerPage = 10; //số mẩu tin trên mỗi trang
 if (!isset($_GET['page'])) {
     $_GET['page'] = 1;
 }
 //vị trí của mẩu tin đầu tiên trên mỗi trang
 $offset = ($_GET['page'] - 1) * $rowsPerPage;
 //lấy $rowsPerPage mẩu tin, bắt đầu từ vị trí $offset
+$list = mysqli_fetch_all($result,MYSQLI_NUM);
 ?>
 
 <div class="container">
@@ -41,7 +42,9 @@ $offset = ($_GET['page'] - 1) * $rowsPerPage;
             </th>
         </tr>
         <?php
-        while ($row = mysqli_fetch_row($result)) {
+        for ($i = 0; $i < $rowsPerPage; $i++){
+            if ($offset+$i == count($list)) break;
+            $row = $list[$offset + $i];
             ?>
             <tr>
 
@@ -65,7 +68,7 @@ $offset = ($_GET['page'] - 1) * $rowsPerPage;
                     <?php echo $row[5] ?>
                 </td>
                 <td width="120px">
-                    <a href="./Edit.php?id=<?php echo $row[0] ?>" class="btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                    <a href="./Edit.php?id=<?php echo $row[0] ?>"><img src="../../Images/edit.png" alt="edit" class="icon" width="30"></a>
                     <a href="./Details.php?id=<?php echo $row[0] ?>"><img src="../../Images/details.png" alt="detail"
                             class="icon" width="30"></a>
                     <a href="./Delete.php?id=<?php echo $row[0] ?>"><img src="../../Images/delete.png" alt="delete"

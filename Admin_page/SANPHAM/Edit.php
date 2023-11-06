@@ -1,6 +1,6 @@
 <?php
-include("../../db_connect.php");
-$maSP = $_GET['maSP'];
+include("../shared/header.php");
+$maSP = $_GET['id'];
 $sql_sanpham = "SELECT TENSP, DONGIA, SOLUONG, MOTA, ANH, TENLOAISP, TENTHUONGHIEU, HEDIEUHANH, sanpham.MATSKT
 FROM ((sanpham join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP) join thuonghieu on
 sanpham.MATH = thuonghieu.MATH) join thongsokythuat on sanpham.MATSKT=thongsokythuat.MATSKT
@@ -28,7 +28,6 @@ if (isset($_POST["luu"])) {
         <?php
 
 }
-include("../shared/header.php");
 ?>
 <div class="container">
         <h2 style="text-align:center">Chỉnh sửa</h2>
