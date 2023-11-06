@@ -2,7 +2,7 @@
 include '../Shared_Layout/header.php';
 ?>
 
-
+<title>Đăng ký</title>
 <div class="row justify-content-md-center mt-5 mb-5">
     <div class="col-md-4">
         <div class="card">

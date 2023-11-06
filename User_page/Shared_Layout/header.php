@@ -24,14 +24,36 @@
     <link href="../../Content/css/toast.css" rel="stylesheet" type="text/css" />
 
     <!-- custom javascript -->
+    <script>
+        function showSuccessToast(notification) {
+            $("#notification").text(notification);
+            $("#toast_updateCart").removeClass("active");
+            $(".progress").removeClass("active");
 
+            setTimeout(function () {
+                $("#toast_updateCart").addClass("active");
+                $(".progress").addClass("active");
+            }, 100); // Delay 100ms trước khi thêm class "active" để restart animation
+
+            timer1 = setTimeout(function () {
+                $("#toast_updateCart").removeClass("active");
+            }, 5000);
+
+            timer2 = setTimeout(function () {
+                $(".progress").removeClass("active");
+            }, 5300);
+        }</script>
 </head>
 
 <body>
     <?php
 
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
     include("../../db_connect.php");
+    
     function formatCurrencyVND($number)
     {
         $formattedNumber = number_format($number, 0, ',', '.') . ' VND';
@@ -65,14 +87,22 @@
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="widgets-wrap float-md-right">
                             <div class="widget-header">
-                                <a href="../GIOHANG/index.php?makh=$_SESSION['MAKH'] " class="widget-view">
+                                <a href="../GIOHANG/GioHang.php" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-shopping-cart"></i>
                                         <?php
                                         if (isset($_SESSION["MAKH"])) {
-                                            $cartCount = $_SESSION["SLGH"];
-                                            echo '<span class="notify" id="CartCount">' . $cartCount . '</span>';
+
+                                            $query = "SELECT COUNT(MASP) AS SoLuong FROM giohang WHERE MAKH = '{$_SESSION['MAKH']}'";
+                                            $result = mysqli_query($conn, $query);
+                                            $row = mysqli_fetch_assoc($result);
+                                            $_SESSION['SLGH'] = $row['SoLuong'];
+                                            $_SESSION['SLGH'] == "" ? 0 : $_SESSION['SLGH'];
+                                            echo '<span class="notify" id="CartCount">' . $_SESSION['SLGH'] . '</span>';
+
                                         }
+
+
                                         ?>
 
                                     </div>
@@ -80,8 +110,7 @@
                                 </a>
                             </div>
                             <div class="widget-header mr-3">
-                                <a href="@Url.Action(" Detail","KHACHHANG",new { makh=Session["MAKH"]})"
-                                    class="widget-view">
+                                <a href="../KHACHHANG/Detail.php?MAKH=$_SESSION['MAKH']" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-user"></i>
 
@@ -132,7 +161,7 @@
 
             <div class="message">
 
-                <span class="text text-2">Giỏ hàng đã được cập nhật</span>
+                <span id="notification" class="text text-2"></span>
             </div>
         </div>
         <i class="fa fa-times close"></i>

@@ -3,23 +3,45 @@ include '../Shared_Layout/header.php';
 $id = "";
 if (isset($_GET["id"])) {
     $id = trim(preg_replace('/\s+/', ' ', $_GET["id"]));
-}
+} //Lọc bớt khoảng trắng
 $order = 'asc';
 if (isset($_GET["order"])) {
     $order = $_GET["order"];
-}
-$rowsPerPage = 4; //số mẩu tin trên mỗi trang, giả sử là 10
+} // Kiểm tra thứ tự sắp xếp sản phẩm theo giá
+
 if (!isset($_GET['page'])) {
     $_GET['page'] = 1;
 }
-//vị trí của mẩu tin đầu tiên trên mỗi trang
+$rowsPerPage = 4; //số mẩu tin trên mỗi trang, giả sử là 4
+
 $offset = ($_GET['page'] - 1) * $rowsPerPage;
 $listSanPham = mysqli_query($conn, "SELECT * FROM sanpham join thuonghieu on sanpham.MATH = thuonghieu.MATH join thongsokythuat on 
 sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP
 WHERE LOWER(TENSP) LIKE '%" . strtolower($id) . "%' OR LOWER(MASP) LIKE '%" . strtolower($id) . "%' or sanpham.MALOAISP = '$id'
 ORDER BY DONGIA $order
 LIMIT $offset , $rowsPerPage");
-//tổng số mẩu tin cần hiển thị
+if (isset($_GET["filter"])) {
+    
+    $loaisanpham = $_GET["loaisanpham"];
+    $hedieuhanh = $_GET["hedieuhanh"];
+    $thuonghieu = $_GET["thuonghieu"];
+    $ram = $_GET["ram"];
+    $rom = $_GET["rom"];
+    $giamin = $_GET["giamin"];
+    $giamax = $_GET["giamax"];
+    // Lọc theo loại sản phẩm
+    $querry = "SELECT * FROM sanpham join thuonghieu on sanpham.MATH = thuonghieu.MATH join thongsokythuat on 
+    sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP
+    WHERE '$loaisanpham' LIKE CONCAT('%', loaisanpham.TENLOAISP, '%')
+        and '$thuonghieu' LIKE CONCAT('%', thuonghieu.TENTHUONGHIEU, '%')
+        
+    
+    ORDER BY DONGIA $order
+    LIMIT $offset , $rowsPerPage";
+
+    $listSanPham = mysqli_query($conn, $querry);
+}
+
 $re = mysqli_query($conn, "SELECT * FROM sanpham join thuonghieu on sanpham.MATH = thuonghieu.MATH join thongsokythuat on 
 sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP
 WHERE LOWER(TENSP) LIKE '%" . strtolower($id) . "%' OR LOWER(MASP) LIKE '%" . strtolower($id) . "%' or sanpham.MALOAISP = '$id' ");
@@ -47,7 +69,7 @@ $maxPage = ceil($numRows / $rowsPerPage);
                                 while ($rows = mysqli_fetch_assoc($result)) {
                                     echo "
                                     <label class='custom-control custom-checkbox'>
-                                        <input type='checkbox' class='custom-control-input' name='loaiSanPham'>
+                                        <input type='checkbox' class='custom-control-input' name='loaiSanPham' checked>
                                         <div class='custom-control-label'>
                                             {$rows['TENLOAISP']}
                                         </div>
@@ -55,7 +77,6 @@ $maxPage = ceil($numRows / $rowsPerPage);
                                 ";
                                 }
                             }
-
                             ?>
 
                         </div> <!-- inner.// -->
@@ -75,7 +96,7 @@ $maxPage = ceil($numRows / $rowsPerPage);
                                 while ($rows = mysqli_fetch_assoc($result)) {
                                     echo "
                                     <label class='custom-control custom-checkbox'>
-                                        <input type='checkbox' class='custom-control-input' name='thuongHieu'>
+                                        <input type='checkbox' class='custom-control-input' name='thuongHieu' checked>
                                         <div class='custom-control-label'>
                                             {$rows['TENTHUONGHIEU']}
                                         </div>
@@ -99,28 +120,28 @@ $maxPage = ceil($numRows / $rowsPerPage);
                         <div class="inner">
 
                             <label class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="heDieuHanh">
+                                <input type="checkbox" class="custom-control-input" name="heDieuHanh" checked>
                                 <div class="custom-control-label">
                                     Android
 
                                 </div>
                             </label>
                             <label class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="heDieuHanh">
+                                <input type="checkbox" class="custom-control-input" name="heDieuHanh"checked>
                                 <div class="custom-control-label">
                                     IOS
 
                                 </div>
                             </label>
                             <label class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="heDieuHanh">
+                                <input type="checkbox" class="custom-control-input" name="heDieuHanh"checked>
                                 <div class="custom-control-label">
                                     Windows
 
                                 </div>
                             </label>
                             <label class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="heDieuHanh">
+                                <input type="checkbox" class="custom-control-input" name="heDieuHanh"checked>
                                 <div class="custom-control-label">
                                     MacOS
 
@@ -162,26 +183,26 @@ $maxPage = ceil($numRows / $rowsPerPage);
                     <div class="filter-content collapse " id="collapse_5">
                         <div class="inner">
                             <label class="checkbox-btn">
-                                <input type="checkbox" name="RAM">
+                                <input type="checkbox" name="RAM" checked>
                                 <span class="btn btn-light"> 4 GB </span>
                             </label>
 
                             <label class="checkbox-btn">
-                                <input type="checkbox" name="RAM">
+                                <input type="checkbox" name="RAM" checked>
                                 <span class="btn btn-light"> 6GB </span>
                             </label>
 
                             <label class="checkbox-btn">
-                                <input type="checkbox" name="RAM">
+                                <input type="checkbox" name="RAM"checked>
                                 <span class="btn btn-light"> 8 GB </span>
                             </label>
 
                             <label class="checkbox-btn">
-                                <input type="checkbox" name="RAM">
+                                <input type="checkbox" name="RAM"checked>
                                 <span class="btn btn-light"> 12 GB </span>
                             </label>
                             <label class="checkbox-btn">
-                                <input type="checkbox" name="RAM">
+                                <input type="checkbox" name="RAM"checked>
                                 <span class="btn btn-light"> 16 GB </span>
                             </label>
                         </div> <!-- inner.// -->
@@ -196,26 +217,26 @@ $maxPage = ceil($numRows / $rowsPerPage);
                     <div class="filter-content collapse " id="collapse_6">
                         <div class="inner">
                             <label class="checkbox-btn">
-                                <input type="checkbox" name="ROM">
+                                <input type="checkbox" name="ROM"checked>
                                 <span class="btn btn-light"> 32 GB </span>
                             </label>
 
                             <label class="checkbox-btn">
-                                <input type="checkbox" name="ROM">
+                                <input type="checkbox" name="ROM"checked>
                                 <span class="btn btn-light"> 64 GB </span>
                             </label>
 
                             <label class="checkbox-btn">
-                                <input type="checkbox" name="ROM">
+                                <input type="checkbox" name="ROM"checked>
                                 <span class="btn btn-light"> 128 GB </span>
                             </label>
 
                             <label class="checkbox-btn">
-                                <input type="checkbox" name="ROM">
+                                <input type="checkbox" name="ROM"checked>
                                 <span class="btn btn-light"> 256 GB </span>
                             </label>
                             <label class="checkbox-btn">
-                                <input type="checkbox" name="ROM">
+                                <input type="checkbox" name="ROM"checked>
                                 <span class="btn btn-light"> 512 GB </span>
                             </label>
                         </div> <!-- inner.// -->
@@ -245,7 +266,7 @@ $maxPage = ceil($numRows / $rowsPerPage);
                         </a>
                     </div>
                 </header><!-- sect-heading -->
-                <?php if (mysqli_num_rows($result) <> 0): ?>
+                <?php if ( mysqli_num_rows($result) <> 0): ?>
                     <?php while ($row = mysqli_fetch_assoc($listSanPham)): ?>
                         <article class="card card-product-list">
                             <div class="row no-gutters">
@@ -360,7 +381,7 @@ $maxPage = ceil($numRows / $rowsPerPage);
             </main> <!-- col.// -->
 
         </div>
-        <form action="/LOAISANPHAM/LocSanPham" id="duLieuBoLoc" style="display:none">
+        <form method="get" action="DanhSachSanPham.php" id="duLieuBoLoc" style="display: none">
             <!-- Đặt input elements cho loaisanpham, hedieuhanh, thuonghieu, ram, rom, giamin, và giamax ở đây -->
             <input type="hidden" name="loaisanpham" value="" />
             <input type="hidden" name="hedieuhanh" value="" />
@@ -369,9 +390,8 @@ $maxPage = ceil($numRows / $rowsPerPage);
             <input type="hidden" name="rom" value="" />
             <input type="hidden" name="giamin" value="" />
             <input type="hidden" name="giamax" value="" />
-
             <!-- Nút gửi form -->
-            <button type="submit">Gửi</button>
+            <button name="filter" type="submit">Gửi</button>
         </form>
     </div> <!-- container .//  -->
 
@@ -408,6 +428,7 @@ $maxPage = ceil($numRows / $rowsPerPage);
                 var Gmin = $("input[name='giaMin']").val();
                 var Gmax = $("input[name='giaMax']").val();
                 // Gửi dữ liệu bộc lọc đến action
+
                 $("input[name='loaisanpham']").val(LSP);
                 $("input[name='hedieuhanh']").val(HDH);
                 $("input[name='thuonghieu']").val(TH);
@@ -415,7 +436,7 @@ $maxPage = ceil($numRows / $rowsPerPage);
                 $("input[name='rom']").val(ROM);
                 $("input[name='giamin']").val(Gmin);
                 $("input[name='giamax']").val(Gmax);
-                $("# ").submit();
+                $('button[name="filter"]').click();
 
             });
 
@@ -423,17 +444,19 @@ $maxPage = ceil($numRows / $rowsPerPage);
         });
         function addToCart(masp) {
 
-            var soluong = 1 // Lấy số lượng từ input
+            var soluong = 1;
             $.ajax({
-                url: '@Url.Action("ThemVaoGioHang", "GioHang")', // URL của phương thức "ThemVaoGioHang" trong controller
+                url: '../GIOHANG/ThemVaoGioHang.php', // URL của phương thức "ThemVaoGioHang" trong controller
                 type: 'POST',
-                data: { masp: masp, soluong: soluong }, // Truyền dữ liệu masp và soluong
+                data: { MASP: masp, SOLUONG: soluong }, // Truyền dữ liệu masp và soluong
                 success: function (response) {
-                    if (response.success) {
-                        $("#CartCount").text(response.slgh);
+                    var result = JSON.parse(response);
+                    if (result.success) {
+                        $("#CartCount").text(result.slgh);
+                        showSuccessToast("Đã thêm sản phẩm vào giỏ hàng");
                     } else {
                         // Chuyển sang trang đăng nhập nếu chưa đăng nhập
-                        window.location.href = "/Authentication/DangNhap";
+                        window.location.href = "../Authentication/DangNhap.php";
                     }
                 },
                 error: function () {

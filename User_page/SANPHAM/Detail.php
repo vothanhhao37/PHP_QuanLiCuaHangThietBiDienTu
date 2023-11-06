@@ -216,21 +216,27 @@ LIMIT 1"
     });
     $(function () {
         $("#addtocart").click(function () {
-            var masp = '@Model.MASP'; // Lấy mã sản phẩm từ Model
+            var masp = '<?php echo $id?>'; // Lấy mã sản phẩm 
             var soluong = $('#ipQuantity').val(); // Lấy số lượng từ input
-
+          
             $.ajax({
-                url: '@Url.Action("ThemVaoGioHang", "GioHang")', // URL của phương thức "ThemVaoGioHang" trong controller
+                url: '../GIOHANG/ThemVaoGioHang.php', // URL của phương thức "ThemVaoGioHang" trong controller
                 type: 'POST',
-                data: { masp: masp, soluong: soluong }, // Truyền dữ liệu masp và soluong
+                data: { MASP: masp, SOLUONG: soluong }, // Truyền dữ liệu masp và soluong
                 success: function (response) {
-                    if (response.success) {
-                      
-                       $("#CartCount").text(response.slgh);
-                      
+                
+                    var result = JSON.parse(response); 
+                
+                    if (result.success) {        
+                       $("#CartCount").text(result.slgh);                   
+                       showSuccessToast("Đã thêm sản phẩm vào giỏ hàng");
                     } 
+                    else{
+                        alert("Không thể thêm vào giỏ hàng!");
+                    }
                 },
                 error: function () {
+                    
                     alert("Có lỗi xảy ra khi thêm vào giỏ hàng!");
                 }
             });

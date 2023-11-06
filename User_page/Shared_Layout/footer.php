@@ -41,6 +41,18 @@
             </section>
         </div><!-- //container -->
     </footer>
+    <script>
+      
+         $(".close").click(function () {
+        $("#toast_updateCart").removeClass("active");
+        setTimeout(function () {
+            $(".progress").removeClass("active");
+        }, 300);
+
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+    });
+    </script>
     <!-- ========================= FOOTER END // ========================= -->
 </body>
 </html>

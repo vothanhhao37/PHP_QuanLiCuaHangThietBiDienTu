@@ -14,12 +14,12 @@ if (isset($_POST['TAIKHOAN']) && isset($_POST['MATKHAU'])) {
 
 	$taikhoan = validate($_POST['TAIKHOAN']);
 	$matkhau = validate($_POST['MATKHAU']);
-
+	$user_data = 'TAIKHOAN=' . $taikhoan;
 	if (empty($taikhoan)) {
-		header("Location: DangNhap.php?error=Vui lòng nhập tên đăng nhập");
+		header("Location: DangNhap.php?error=Vui lòng nhập tên đăng nhập&$user_data");
 		exit();
 	} else if (empty($matkhau)) {
-		header("Location: DangNhap.php?error=Vui lòng nhập mật khẩu");
+		header("Location: DangNhap.php?error=Vui lòng nhập mật khẩu&$user_data");
 		exit();
 	} else {
 		$sql = "SELECT * FROM KHACHHANG WHERE TAIKHOAN='$taikhoan' AND MATKHAU='$matkhau'";
@@ -41,12 +41,9 @@ if (isset($_POST['TAIKHOAN']) && isset($_POST['MATKHAU'])) {
 				$_SESSION['SLGH'] = $result; 
 				header("Location: ../HOME/index.php");
 				exit();
-			} else {
-				header("Location: DangNhap.php?error=Incorect User name or password");
-				exit();
-			}
+			} 
 		} else {
-			header("Location: DangNhap.php?error=Data error");
+			header("Location: DangNhap.php?error=Sai tên dăng nhập hoặc mật khẩu&$user_data");
 			exit();
 		}
 	}

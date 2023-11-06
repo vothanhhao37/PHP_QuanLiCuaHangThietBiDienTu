@@ -81,7 +81,7 @@
                     <div class="home-category-banner bg-light-orange">
                         <h5 class="title">Danh sách điện thoại hot nhất hiện nay</h5>
                         <p>Tìm kiếm và khám phá những mẫu điện thoại độc đáo và tiên tiến nhất.</p>
-                        <a href="@Url.Action(" SanPhamTheoLoai","LOAISANPHAM",new { id="LSP07" })"
+                        <a href="../LOAISANPHAM/DanhSachSanPham.php?id=LSP07"
                             class="btn btn-outline-primary rounded-pill">Xem ngay</a>
                         <img src="../../Content/images/items/12.jpg" class="img-bg">
                     </div>
@@ -100,7 +100,7 @@
                                 echo "<a href='../SANPHAM/Detail.php?id={$rows['MASP']} ' class='item'>";
                                 echo '<div class="card-body">';
                                 echo "<img class='img-sm float-right' src=../../Images/{$rows['ANH']}>' ";
-                                echo "<p class='text-muted'><i class='fa fa-map-marker-alt'></i>{$rows['TENSP']}</p>";
+                                echo "<p class='text-muted'><i class='fa fa-mobile'></i> {$rows['TENSP']}</p>";
                                 echo '</div>';
                                 echo '</a>';
                                 echo '</li>';
@@ -127,7 +127,7 @@
                         <h5 class="title">Các mẫu laptop cho công việc và giải trí</h5>
                         <p>Tìm kiếm và khám phá những mẫu laptop tiên tiến và đa năng cho công việc và giải trí của bạn.
                         </p>
-                        <a href="@Url.Action(" SanPhamTheoLoai","LOAISANPHAM",new { id="LSP06" })"
+                        <a href="../LOAISANPHAM/DanhSachSanPham.php?id=LSP06"
                             class="btn btn-outline-primary rounded-pill">Xem ngay</a>
                         <img src="../../Content/images/items/14.jpg" class="img-bg">
                     </div>
@@ -145,7 +145,7 @@
                                 echo "<a href='../SANPHAM/Detail.php?id={$rows['MASP']} ' class='item'>";
                                 echo '<div class="card-body">';
                                 echo "<img class='img-sm float-right' src=../../Images/{$rows['ANH']}>' ";
-                                echo "<p class='text-muted'><i class='fa fa-map-marker-alt'></i>{$rows['TENSP']}</p>";
+                                echo "<p class='text-muted'><i class='fa fa-laptop'></i> {$rows['TENSP']}</p>";
                                 echo '</div>';
                                 echo '</a>';
                                 echo '</li>';
@@ -173,7 +173,7 @@
                         <h5 class="title">Các mẫu máy tính bảng đa năng</h5>
                         <p>Tìm kiếm và khám phá những mẫu máy tính bảng tiện ích và đa năng cho công việc và giải trí
                             của bạn.</p>
-                        <a href="@Url.Action(" SanPhamTheoLoai","LOAISANPHAM",new { id="LSP08" })"
+                        <a href="../LOAISANPHAM/DanhSachSanPham.php?id=LSP08"
                             class="btn btn-outline-primary rounded-pill">Xem ngay</a>
                         <img src="../../Content/images/items/14.jpg" class="img-bg">
                     </div>
@@ -191,7 +191,7 @@
                                 echo "<a href='../SANPHAM/Detail.php?id={$rows['MASP']} ' class='item'>";
                                 echo '<div class="card-body">';
                                 echo "<img class='img-sm float-right' src=../../Images/{$rows['ANH']}>' ";
-                                echo "<p class='text-muted'><i class='fa fa-map-marker-alt'></i>{$rows['TENSP']}</p>";
+                                echo "<p class='text-muted'><i class='fa fa-tablet'></i> {$rows['TENSP']}</p>";
                                 echo '</div>';
                                 echo '</a>';
                                 echo '</li>';
@@ -216,25 +216,29 @@
 
         <div class="row row-sm">
             <?php
-           $result = mysqli_query($conn, "SELECT * FROM sanpham  LIMIT 12");
+            $result = mysqli_query($conn, "SELECT * FROM sanpham  LIMIT 12");
 
-           if (mysqli_num_rows($result) <> 0) {
-               while ($rows = mysqli_fetch_assoc($result)) {
-                   echo "
-                       <div class='col-xl-2 col-lg-3 col-md-4 col-6'>
-                           <div class='card card-sm card-product-grid'>
-                               <a href='../SANPHAM/Detail.php' class='img-wrap'> 
-                                   <img src='../../Images/{$rows['ANH']}'> 
-                               </a>
-                               <figcaption class='info-wrap'>
-                                   <a href='../SANPHAM/Detail.php' class='title'>{$rows['TENSP']}</a>
-                                   <div class='price mt-1'>{$rows['DONGIA']}</div>
-                               </figcaption>
-                           </div>
-                       </div>
-                   ";
-               }
-           }
+            if (mysqli_num_rows($result) <> 0) {
+                while ($rows = mysqli_fetch_assoc($result)) {
+                    ?>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                        <div class="card card-sm card-product-grid">
+                            <a href="../SANPHAM/Detail.php?id=<?php echo $rows['MASP']?>" class="img-wrap">
+                                <img src="../../Images/<?= $rows['ANH'] ?>">
+                            </a>
+                            <figcaption class="info-wrap">
+                                <a href="../SANPHAM/Detail.php?id=<?php echo $rows['MASP']?>" class="title">
+                                    <?= $rows['TENSP'] ?>
+                                </a>
+                                <div class="price mt-1">
+                                    <?= $rows['DONGIA'] ?>
+                                </div>
+                            </figcaption>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }
             ?>
 
 

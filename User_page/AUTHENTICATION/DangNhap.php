@@ -22,7 +22,7 @@ include '../Shared_Layout/header.php';
                         <label for="TAIKHOAN">Tên đăng nhập</label>
                         <input type="text" name="TAIKHOAN" id="TAIKHOAN" class="form-control"
                             placeholder="Tên tài khoản"
-                            value="<?php echo isset($_POST['TAIKHOAN']) ? $_POST['TAIKHOAN'] : ''; ?>">
+                            value="<?php echo isset($_GET['TAIKHOAN']) ? $_GET['TAIKHOAN'] : ''; ?>">
                     </div>
                     <div class="form-group">
                         <label for="MATKHAU">Mật khẩu</label>
