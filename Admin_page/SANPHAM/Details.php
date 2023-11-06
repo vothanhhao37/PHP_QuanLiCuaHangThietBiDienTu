@@ -1,11 +1,11 @@
-<?php
+﻿<?php
 include("../../db_connect.php");
 $maSP = $_GET['maSP'];
 $sql_sanpham = "SELECT TENSP, DONGIA, SOLUONG, MOTA, ANH, TENLOAISP, TENTHUONGHIEU, HEDIEUHANH
 FROM ((sanpham join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP) join thuonghieu on
 sanpham.MATH = thuonghieu.MATH) join thongsokythuat on sanpham.MATSKT=thongsokythuat.MATSKT
 WHERE sanpham.MASP = '$maSP'";
-$result = mysqlI_query($conn, $sql_sanpham);
+$result = mysqlI_query($conn,$sql_sanpham);
 $row = mysqli_fetch_assoc($result);
 include("../shared/header.php");
 ?>
@@ -31,7 +31,7 @@ include("../shared/header.php");
         </dt>
 
         <dd>
-            <?php
+        <?php
             echo $row['DONGIA'];
             ?>
         </dd>
@@ -41,7 +41,7 @@ include("../shared/header.php");
         </dt>
 
         <dd>
-            <?php
+        <?php
             echo $row['SOLUONG'];
             ?>
         </dd>
@@ -51,7 +51,7 @@ include("../shared/header.php");
         </dt>
 
         <dd>
-            <?php
+        <?php
             echo $row['MOTA'];
             ?>
         </dd>
@@ -61,8 +61,7 @@ include("../shared/header.php");
         </dt>
 
         <dd>
-            <img class="" width="30%" src="<?php $anh = $row['ANH'];
-            echo "../../Images/" . $anh ?>  ">
+            <img class="" width="30%" src="<?php $anh =$row['ANH']; echo "../../Images/".$anh ?>  ">
         </dd>
 
         <dt>
@@ -70,7 +69,7 @@ include("../shared/header.php");
         </dt>
 
         <dd>
-            <?php
+        <?php
             echo $row['TENLOAISP'];
             ?>
         </dd>
@@ -80,7 +79,7 @@ include("../shared/header.php");
         </dt>
 
         <dd>
-            <?php
+        <?php
             echo $row['TENTHUONGHIEU'];
             ?>
         </dd>
@@ -90,7 +89,7 @@ include("../shared/header.php");
         </dt>
 
         <dd>
-            <?php
+        <?php
             echo $row['HEDIEUHANH'];
             ?>
         </dd>
