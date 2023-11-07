@@ -1,11 +1,22 @@
-﻿
 <?php
-include("../shared/header.php");
-?>
-<?php
-$sql = "SELECT MAHOADON, NGAYTAO, TINHTRANGDONHANG, khachhang.TENKH, nhanvien.TENNV, khachhang.MAKH FROM ((hoadon JOIN khachhang ON hoadon.MAKH = khachhang.MAKH) JOIN nhanvien ON hoadon.MANV = nhanvien.MANV)";
-$result = mysqli_query($conn, $sql);
+require("../shared/header.php")
+    ?>
 
+<!-- Start body -->
+<?php
+
+if(isset($_POST["manv"])){
+    $sql = "SELECT MANV, TENNV, DIACHI, SDT, EMAIL, CMND, CHUCVU, GIOITINH FROM nhanvien ORDER BY MANV;";    
+}
+else if(isset($_POST["tennv"])){
+    $sql = "SELECT MANV, TENNV, DIACHI, SDT, EMAIL, CMND, CHUCVU, GIOITINH FROM nhanvien ORDER BY TENNV;";    
+}
+else if(isset($_POST["diachi"])){
+    $sql = "SELECT MANV, TENNV, DIACHI, SDT, EMAIL, CMND, CHUCVU, GIOITINH FROM nhanvien ORDER BY DIACHI;";    
+}
+else
+$sql = "SELECT MANV, TENNV, DIACHI, SDT, EMAIL, CMND, CHUCVU, GIOITINH FROM nhanvien;";
+$result = mysqli_query($conn, $sql);
 $rowsPerPage = 5; //số mẩu tin trên mỗi trang
 if (!isset($_GET['page'])) {
     $_GET['page'] = 1;
@@ -17,30 +28,41 @@ $list = mysqli_fetch_all($result,MYSQLI_NUM);
 ?>
 
 <div class="container">
-    <h2 style="text-align:center">Danh sách hóa đơn</h2>
+    <h2 style="text-align:center">DANH SÁCH NHÂN VIÊN</h2>
 
-    <a href="Create.php" class="btn btn-primary m-2">Tạo mới</a>
+    <a href="Create.php" class="btn btn-primary m-2">Thêm nhân viên</a>
     <?php include("../shared/alert.php"); ?>
     <table class="table">
+    <form action="" method="post">
         <tr>
-            <th>Mã hóa đơn</th>
             <th>
-                Ngày tạo
+            <input name="manv" type="submit" value="Mã nhân viên" style="border: none; background: none; font-weight: bold;">
             </th>
             <th>
-                Tình trạng đơn hàng
+            <input name="tennv" type="submit" value="Tên nhân viên" style="border: none; background: none; font-weight: bold;">
             </th>
             <th>
-                Tên khách hàng
+            <input name="diachi" type="submit" value="Địa chỉ" style="border: none; background: none; font-weight: bold;">
             </th>
             <th>
-                Tên nhân viên
+                Số điện thoại
             </th>
             <th>
-                Mã khách hàng
+                Email
+            </th>
+            <th>
+                CMND
+            </th>
+
+            <th>
+                Chức vụ
+            </th>
+            <th>
+                Giới tính
             </th>
         </tr>
-        <?php
+    </form>
+    <?php
         for ($i = 0; $i < $rowsPerPage; $i++){
             if ($offset+$i == count($list)) break;
             $row = $list[$offset + $i];
@@ -64,19 +86,30 @@ $list = mysqli_fetch_all($result,MYSQLI_NUM);
                 <td>
                     <?php echo $row[5] ?>
                 </td>
+                <td>
+                    <?php echo $row[6] ?>
+                </td>
+                <td>
+                    <?php echo $row[7] ?>
+                </td>
                 <td width="120px">
-                    <a href="./Edit.php?id=<?php echo $row[0]?>"><img src="../../Images/edit.png" alt="Edit" class="icon" width="30"></a>
-                    <a href="./Details.php?id=<?php echo $row[0]?>"><img src="../../Images/details.png" alt="detail" class="icon" width="30"></a>
-                    <a href="./Delete.php?id=<?php echo $row[0]?>"><img src="../../Images/delete.png" alt="delete" class="icon" width="30"></a>
+                    <a href="./Edit.php?id=<?php echo $row[0] ?>"><img src="../../Images/edit.png" alt="Edit" class="icon"
+                            width="30"></a>
+                    <a href="./Details.php?id=<?php echo $row[0] ?>"><img src="../../Images/details.png" alt="detail"
+                            class="icon" width="30"></a>
+                    <a href="./Delete.php?id=<?php echo $row[0] ?>"><img src="../../Images/delete.png" alt="delete"
+                            class="icon" width="30"></a>
                 </td>
             </tr>
             <?php
         }
         ?>
+
+
     </table>
     <div style="display: flex; width: 100%;">
             <?php
-            $re = mysqli_query($conn, 'select * from hoadon');
+            $re = mysqli_query($conn, 'select * from nhanvien');
             $numRows = mysqli_num_rows($re);
             // gắn thêm nút back
             if ($_GET['page'] > 1)
@@ -121,8 +154,10 @@ $list = mysqli_fetch_all($result,MYSQLI_NUM);
                 echo "<button class='btn btn-default' disabled>Next</button>";
             ?>
         </div>
-
 </div>
+
+<!-- End body -->
+
 <?php
-include("../shared/footer.php");
+require("../shared/footer.php");
 ?>

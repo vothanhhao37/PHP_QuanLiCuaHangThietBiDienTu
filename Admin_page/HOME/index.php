@@ -13,14 +13,19 @@ include("../shared/header.php");
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3> Sửa</h3>
-
+                        <?php 
+                        include("../../db_connect.php");
+                        $sql_countHD = "SELECT COUNT(*) FROM hoadon";
+                        $kq = mysqli_query($conn, $sql_countHD);
+                        $kq = mysqli_fetch_row($kq);
+                        ?>
+                        <h3><?php echo $kq[0] ?></h3>
                         <p>Tổng đơn đặt hàng</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="tongdondathang.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="../HOADON/Index.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -28,8 +33,13 @@ include("../shared/header.php");
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>Sửa<sup style="font-size: 20px"></sup></h3>
-
+                    <?php 
+                        include("../../db_connect.php");
+                        $sql_countSP = "SELECT COUNT(*) FROM sanpham";
+                        $kq = mysqli_query($conn, $sql_countSP);
+                        $kq = mysqli_fetch_row($kq);
+                        ?>
+                        <h3><?php echo $kq[0] ?></h3>
                         <p>Sản phẩm</p>
                     </div>
                     <div class="icon">
@@ -43,7 +53,13 @@ include("../shared/header.php");
                 <!-- small box -->
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3> Sửa</h3>
+                    <?php 
+                        include("../../db_connect.php");
+                        $sql_countKH = "SELECT COUNT(*) FROM khachhang";
+                        $kq = mysqli_query($conn, $sql_countKH);
+                        $kq = mysqli_fetch_row($kq);
+                        ?>
+                        <h3><?php echo $kq[0] ?></h3>
 
                         <p>Khách hàng</p>
                     </div>
@@ -58,7 +74,13 @@ include("../shared/header.php");
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>Sửa</h3>
+                    <?php 
+                        include("../../db_connect.php");
+                        $sql_countNV = "SELECT COUNT(*) FROM nhanvien";
+                        $kq = mysqli_query($conn, $sql_countNV);
+                        $kq = mysqli_fetch_row($kq);
+                        ?>
+                        <h3><?php echo $kq[0] ?></h3>
 
                         <p>Nhân viên</p>
                     </div>

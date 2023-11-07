@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="../../Content/admin/plugins/summernote/summernote-bs4.min.css">
     <link href="../../Content/admin/dist/css/styleAdmin.css" rel="stylesheet" />
     <link href="../../Content/fonts/fontawesome/css/all.min.css" rel="stylesheet" />
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -42,7 +41,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="admin/pages/home.php" class="nav-link">Trang chủ</a>
+                    <a href="../HOME/index.php" class="nav-link">Trang chủ</a>
                 </li>
                 
             </ul>
@@ -167,7 +166,7 @@
 
                                 </li>
                         <li class="nav-item">
-                            <a href="khachhang.php" class="nav-link">
+                            <a href="../KHACHHANG/Index.php" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Quản lí khách hàng
@@ -176,7 +175,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="thuonghieu.php" class="nav-link">
+                            <a href="../THUONGHIEU/Index.php" class="nav-link">
                                 <i class="nav-icon fas fa-star"></i>
                                 <p>
                                     Quản lí thương hiệu
@@ -184,7 +183,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="thongsokythuat.php" class="nav-link">
+                            <a href="../THONGSOKYTHUAT/Index.php" class="nav-link">
                                 <i class="nav-icon fas fa-info"></i>
                                 <p>
                                     Quản lí thông số kỹ thuật
@@ -193,7 +192,7 @@
                         </li>
                         <li class="nav-header">Thống kê</li>
                         <li class="nav-item">
-                            <a href="thongkedoanhthu.php" class="nav-link">
+                            <a href="../ThongKeDoanhThu/Index.php" class="nav-link">
                                 <i class="nav-icon fas fa-dollar-sign"></i>
                                 <p>
                                     Thống kê doanh thu
