@@ -1,21 +1,23 @@
 <?php
 include("../../db_connect.php");
-$sql = "SELECT MASP from sanpham ORDER BY MASP DESC LIMIT 1";
-$result = mysqli_query($conn, $sql);
+$maSP = $_GET['maSP'];
+$sql_sanpham = "SELECT TENSP, DONGIA, SOLUONG, MOTA, ANH, TENLOAISP, TENTHUONGHIEU, HEDIEUHANH, sanpham.MATSKT
+FROM ((sanpham join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP) join thuonghieu on
+sanpham.MATH = thuonghieu.MATH) join thongsokythuat on sanpham.MATSKT=thongsokythuat.MATSKT
+WHERE sanpham.MASP = '$maSP'";
+$result = mysqli_query($conn, $sql_sanpham);
 $row = mysqli_fetch_assoc($result);
-$maSP = (int) substr($row['MASP'], 2);
-$maSP = $maSP + 1;
-$maSP = "SP" . str_pad($maSP, 6, "0", STR_PAD_LEFT);
 
-if (isset($_POST["taomoi"])) {
+if (isset($_POST["luu"])) {
         $target_dir = "../../Images/";
         $target_file = $target_dir . basename($_FILES["Avatar"]["name"]);
         $check = getimagesize($_FILES["Avatar"]["tmp_name"]);
         if ($check !== false) {
                 move_uploaded_file($_FILES["Avatar"]["tmp_name"], $target_file);
-                $sql = "INSERT INTO sanpham VALUES ('$maSP', '" . $_POST['TENSP'] . "', '" . $_POST['DONGIA'] . "', 
-        '" . $_POST['SOLUONG'] . "', '" . $_POST['MOTA'] . "', '" . $_FILES["Avatar"]["name"] . "', '" . $_POST['loaisp'] . "',
-        '" . $_POST['thuonghieu'] . "', '" . $_POST['matskt'] . "')";
+                $sql = "UPDATE sanpham SET TENSP = '" . $_POST['TENSP'] . "', DONGIA = '" . $_POST['DONGIA'] . "', 
+                SOLUONG = '" . $_POST['SOLUONG'] . "', MOTA = '" . $_POST['MOTA'] . "', ANH = '" . $_FILES["Avatar"]["name"] . "', 
+                MALOAISP = '" . $_POST['loaisp'] . "', MATH = '" . $_POST['thuonghieu'] . "', MATSKT = '" . $_POST['tskt'] . "'
+                WHERE MASP = '".$maSP."'";
                 $result = mysqli_query($conn, $sql);
                 header('Location:index.php');
         }
@@ -29,43 +31,47 @@ if (isset($_POST["taomoi"])) {
 include("../shared/header.php");
 ?>
 <div class="container">
-        
-        <h2 style="text-align:center">Thêm sản phẩm</h2>
+        <h2 style="text-align:center">Chỉnh sửa</h2>
+
         <form action="" method="post" enctype="multipart/form-data">
 
                 <div class="form-horizontal">
-                        <h2>Sản phẩm</h2>
+                        <h4>Sản phẩm</h4>
+                        <hr />
                         <div class="form-group">
                                 <label class="control-label col-md-2">Mã sản phẩm </label>
                                 <input type="text" class="form-control ml-2" readonly value="<?php echo $maSP ?>"
                                         name="MASP" style="width:82%">
                         </div>
-
                         <div class="form-group">
                                 <label class="control-label col-md-2">Tên sản phẩm </label>
                                 <div class="col-md-10">
-                                        <input type="text" class="form-control" name="TENSP" required>
+                                        <input type="text" class="form-control" name="TENSP" required
+                                                value="<?php echo $row['TENSP'] ?>">
                                 </div>
                         </div>
 
                         <div class="form-group">
-                                <label class="control-label col-md-2">Đơn giá </label>
+                                <label class="control-label col-md-2">Đơn giá</label>
                                 <div class="col-md-10">
-                                        <input type="text" class="form-control" name="DONGIA" required>
+                                        <input type="text" class="form-control" name="DONGIA" required
+                                                value="<?php echo $row['DONGIA'] ?>">
                                 </div>
                         </div>
 
                         <div class="form-group">
-                                <label class="control-label col-md-2">Số lượng </label>
+                                <label class="control-label col-md-2">Số lượng</label>
                                 <div class="col-md-10">
-                                        <input type="text" class="form-control" name="SOLUONG" required>
+                                        <input type="number" class="form-control" name="SOLUONG" required
+                                                value="<?php echo $row['SOLUONG'] ?>">
                                 </div>
                         </div>
 
                         <div class="form-group">
-                                <label class="control-label col-md-2">Mô tả </label>
+                                <label class="control-label col-md-2">Mô tả</label>
                                 <div class="col-md-10">
-                                        <input type="text" class="form-control" name="MOTA" required>
+                                        <input type="text" class="form-control" name="MOTA" required
+                                                value="<?php echo $row['MOTA'] ?>">
                                 </div>
                         </div>
 
@@ -84,8 +90,11 @@ include("../shared/header.php");
                                 <label class="control-label col-md-2">Loại sản phẩm</label>
                                 <div class="col-md-10">
                                         <select name="loaisp" id="" class="form-control">
-                                                <?php while ($row = mysqli_fetch_row($result_loaisp)) {
-                                                        echo "<option selected value='$row[1]'>$row[0]</option>";
+                                                <?php while ($rows = mysqli_fetch_row($result_loaisp)) {
+                                                        if ($row["TENLOAISP"] == $rows[0]) {
+                                                                echo "<option selected value='$rows[1]'>$rows[0]</option>";
+                                                        } else
+                                                                echo "<option value='$rows[1]'>$rows[0]</option>";
                                                 } ?>
                                         </select>
                                 </div>
@@ -99,8 +108,11 @@ include("../shared/header.php");
                                 <label class="control-label col-md-2">Thương hiệu</label>
                                 <div class="col-md-10">
                                         <select name="thuonghieu" id="" class="form-control">
-                                                <?php while ($row = mysqli_fetch_row($result_thuonghieu)) {
-                                                        echo "<option selected value='$row[1]'>$row[0]</option>";
+                                                <?php while ($rows = mysqli_fetch_row($result_thuonghieu)) {
+                                                        if ($row["TENTHUONGHIEU"] == $rows[0]) {
+                                                                echo "<option selected value='$rows[1]'>$rows[0]</option>";
+                                                        } else
+                                                                echo "<option value='$rows[1]'>$rows[0]</option>";
                                                 } ?>
                                         </select>
                                 </div>
@@ -111,11 +123,14 @@ include("../shared/header.php");
                         $result_tskt = mysqli_query($conn, $sql_tskt);
                         ?>
                         <div class="form-group">
-                                <label class="control-label col-md-2">Mã thông số kỹ thuật</label>
+                                <label class="control-label col-md-2">Thông số kỹ thuật</label>
                                 <div class="col-md-10">
-                                        <select name="matskt" id="" class="form-control">
-                                                <?php while ($row = mysqli_fetch_row($result_tskt)) {
-                                                        echo "<option selected value='$row[0]'>$row[0]</option>";
+                                        <select name="tskt" id="" class="form-control">
+                                                <?php while ($rows = mysqli_fetch_row($result_tskt)) {
+                                                        if ($row["MATSKT"] == $rows[0]) {
+                                                                echo "<option selected value='$rows[0]'>$rows[0]</option>";
+                                                        } else
+                                                                echo "<option value='$rows[0]'>$rows[0]</option>";
                                                 } ?>
                                         </select>
                                 </div>
@@ -123,7 +138,7 @@ include("../shared/header.php");
 
                         <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Tạo mới" class="btn btn-primary" name="taomoi" />
+                                        <input type="submit" value="Lưu" class="btn btn-primary" name="luu" />
                                 </div>
                         </div>
                 </div>
@@ -133,6 +148,3 @@ include("../shared/header.php");
                 <a href="./index.php">Trở về trang danh sách</a>
         </div>
 </div>
-<?php
-include("../shared/footer.php");
-?>
