@@ -29,19 +29,19 @@ if (isset($_POST['TAIKHOAN']) && isset($_POST['MATKHAU'])) {
 		if (mysqli_num_rows($result) === 1) {
 			$row = mysqli_fetch_assoc($result);
 			if ($row['TAIKHOAN'] === $taikhoan && $row['MATKHAU'] === $matkhau) {
-				
-                $_SESSION['TENKH'] = $row['TENKH'];
+
+				$_SESSION['TENKH'] = $row['TENKH'];
 				$_SESSION['TAIKHOAN'] = $row['TAIKHOAN'];
 				$_SESSION['MAKH'] = $row['MAKH'];
-                $_SESSION['SDT'] = $row['SDT'];
-                $_SESSION['DIACHI'] = $row['DIACHI'];
-                $_SESSION['EMAIL'] = $row['EMAIL'];
-				$slgh = "SELECT COUNT(giohang.SOLUONG) AS total FROM giohang JOIN khachhang ON giohang.MAKH = khachhang.MAKH WHERE giohang.MAKH = {$row['MAKH']}";
-	 			$result = mysqli_query($conn, $slgh);
-				$_SESSION['SLGH'] = $result; 
+				$_SESSION['SDT'] = $row['SDT'];
+				$_SESSION['DIACHI'] = $row['DIACHI'];
+				$_SESSION['EMAIL'] = $row['EMAIL'];
+				$slgh = "SELECT COUNT(giohang.SOLUONG) AS total FROM giohang JOIN khachhang ON giohang.MAKH = khachhang.MAKH WHERE giohang.MAKH = '{$row['MAKH']}'";
+				$result = mysqli_query($conn, $slgh);
+				$_SESSION['SLGH'] = $result;
 				header("Location: ../HOME/index.php");
 				exit();
-			} 
+			}
 		} else {
 			header("Location: DangNhap.php?error=Sai tên dăng nhập hoặc mật khẩu&$user_data");
 			exit();
