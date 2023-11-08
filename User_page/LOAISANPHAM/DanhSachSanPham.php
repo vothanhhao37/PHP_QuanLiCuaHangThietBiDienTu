@@ -21,7 +21,7 @@ if(isset($_GET['querry'])) {
 else 
 $querry = "SELECT * FROM sanpham join thuonghieu on sanpham.MATH = thuonghieu.MATH join thongsokythuat on 
 sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP
-WHERE LOWER(TENSP) LIKE '%" . strtolower($id) . "%' OR LOWER(MASP) LIKE '%" . strtolower($id) . "%' or sanpham.MALOAISP = '$id'
+WHERE LOWER(TENSP) LIKE '%" . strtolower($id) . "%' OR LOWER(MASP) LIKE '%" . strtolower($id) . "%' or sanpham.MALOAISP = '$id' OR LOWER(thuonghieu.TENTHUONGHIEU) LIKE '%" . strtolower($id) . "%'
 ORDER BY DONGIA $order";
 $listSanPham = mysqli_query($conn, $querry . " LIMIT $offset , $rowsPerPage");
 if (isset($_GET["filter"])) {

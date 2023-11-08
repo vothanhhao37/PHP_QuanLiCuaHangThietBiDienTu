@@ -6,10 +6,10 @@
                     <aside class="col-md-5 col-6">
                         <h6 class="title">Thương hiệu</h6>
                         <ul class="list-unstyled">
-                            <li> <a href="@Url.Action("SanPhamTheoLoai","LOAISANPHAM",new { id = "Apple"})">Apple</a></li>
-                            <li> <a href="@Url.Action("SanPhamTheoLoai","LOAISANPHAM",new { id = "Samsung"})">Samsung</a></li>
-                            <li> <a href="@Url.Action("SanPhamTheoLoai","LOAISANPHAM",new { id = "Xiaomi"})">Xiaomi</a></li>
-                            <li> <a href="@Url.Action("SanPhamTheoLoai","LOAISANPHAM",new { id = "Lenovo"})">Lenovo</a></li>
+                            <li> <a href="../LOAISANPHAM/DanhSachSanPham.php?id=apple">Apple</a></li>
+                            <li> <a href="../LOAISANPHAM/DanhSachSanPham.php?id=samsung">Samsung</li>
+                            <li> <a href="../LOAISANPHAM/DanhSachSanPham.php?id=xiaomi">Xiaomi</li>
+                            <li> <a href="../LOAISANPHAM/DanhSachSanPham.php?id=lenovo">Lenovo</li>
                         </ul>
                     </aside>
 
