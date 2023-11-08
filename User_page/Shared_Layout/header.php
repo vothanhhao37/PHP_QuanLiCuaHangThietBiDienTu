@@ -110,7 +110,7 @@
                                 </a>
                             </div>
                             <div class="widget-header mr-3">
-                                <a href="../KHACHHANG/Detail.php?MAKH=$_SESSION['MAKH']" class="widget-view">
+                                <a  href="../KHACHHANG/Detail.php" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-user"></i>
 

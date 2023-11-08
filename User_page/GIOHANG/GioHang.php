@@ -202,6 +202,9 @@ include '../Shared_Layout/header.php';
 
         </p>
     </div><!-- container // -->
+    <form id="hiddenForm" action="../GIOHANG/XacNhanDonHang.php" method="POST">
+    <input type="hidden" name="selectedProducts" id="hiddenSelectedProducts">
+</form>
 </section>
 <!-- ========================= SECTION  END// ========================= -->
 
@@ -368,38 +371,30 @@ include '../Shared_Layout/header.php';
     });
     // Truyền dữ liệu selected products sang action XacNhanDatHang
     function sendSelectedProducts() {
-        var checkboxes = document.querySelectorAll('.sanpham-checkbox:checked');
-        var selectedProducts = [];
+    var checkboxes = document.querySelectorAll('.sanpham-checkbox:checked');
+    var selectedProducts = [];
 
-        checkboxes.forEach(function (checkbox) {
-            var masp = checkbox.dataset.idsp;
-            var soluong = parseInt(document.getElementById('soluong_' + masp).value);
+    checkboxes.forEach(function (checkbox) {
+        var masp = checkbox.dataset.idsp;
+        var soluong = parseInt(document.getElementById('soluong_' + masp).value);
 
-            var selectedProduct = {
-                MASP: masp,
-                SOLUONG: soluong,
-            };
+        var selectedProduct = {
+            MASP: masp,
+            SOLUONG: soluong,
+        };
 
-            selectedProducts.push(selectedProduct);
-        });
+        selectedProducts.push(selectedProduct);
+    });
 
-        // Sử dụng Ajax để gửi dữ liệu lên server
-        $.ajax({
-            url: '/GioHang/XuLiGioHang', // Đường dẫn tới action trong controller để xử lý dữ liệu
-            type: 'POST', // Phương thức gửi dữ liệu (POST)
-            data: JSON.stringify(selectedProducts), // Chuyển đổi dữ liệu thành chuỗi JSON
-            contentType: 'application/json; charset=utf-8', // Định dạng dữ liệu gửi đi là JSON
-            dataType: 'json', // Kiểu dữ liệu trả về từ server là JSON
-            success: function (response) {
-                // Xử lý phản hồi từ server (nếu cần)
-                // Chẳng hạn, chuyển hướng đến trang xác nhận đặt hàng:
-                window.location.href = '/GioHang/ConfirmOrder';
-            },
-            error: function (xhr, status, error) {
-                alert("Bạn chưa chọn sản phẩm cần thanh toán")
-            }
-        });
-    }
+    // Gán giá trị selectedProducts vào trường ẩn trong biểu mẫu
+    document.getElementById('hiddenSelectedProducts').value = JSON.stringify(selectedProducts);
+
+    // Gửi biểu mẫu
+    if(selectedProducts.length > 0)
+    document.getElementById('hiddenForm').submit();
+    else
+    alert("Vui lòng chọn sản phẩm trong giỏ hàng để thanh toán");
+}
    
     function formatCurrency(number) {
         return number.toLocaleString("vi-VN", { style: "currency", currency: "VND" });

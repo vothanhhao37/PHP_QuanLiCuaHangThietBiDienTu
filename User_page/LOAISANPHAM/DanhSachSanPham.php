@@ -12,14 +12,18 @@ if (isset($_GET["order"])) {
 if (!isset($_GET['page'])) {
     $_GET['page'] = 1;
 }
-$rowsPerPage = 4; //số mẩu tin trên mỗi trang, giả sử là 4
+$rowsPerPage = 7; //số mẩu tin trên mỗi trang, giả sử là 4
 
 $offset = ($_GET['page'] - 1) * $rowsPerPage;
-$listSanPham = mysqli_query($conn, "SELECT * FROM sanpham join thuonghieu on sanpham.MATH = thuonghieu.MATH join thongsokythuat on 
+if(isset($_GET['querry'])) {
+    $querry = $_GET['querry'];
+} 
+else 
+$querry = "SELECT * FROM sanpham join thuonghieu on sanpham.MATH = thuonghieu.MATH join thongsokythuat on 
 sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP
 WHERE LOWER(TENSP) LIKE '%" . strtolower($id) . "%' OR LOWER(MASP) LIKE '%" . strtolower($id) . "%' or sanpham.MALOAISP = '$id'
-ORDER BY DONGIA $order
-LIMIT $offset , $rowsPerPage");
+ORDER BY DONGIA $order";
+$listSanPham = mysqli_query($conn, $querry . " LIMIT $offset , $rowsPerPage");
 if (isset($_GET["filter"])) {
     
     $loaisanpham = $_GET["loaisanpham"];
@@ -34,17 +38,12 @@ if (isset($_GET["filter"])) {
     sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP
     WHERE '$loaisanpham' LIKE CONCAT('%', loaisanpham.TENLOAISP, '%')
         and '$thuonghieu' LIKE CONCAT('%', thuonghieu.TENTHUONGHIEU, '%')
-        
-    
-    ORDER BY DONGIA $order
-    LIMIT $offset , $rowsPerPage";
+    ORDER BY DONGIA $order";
 
-    $listSanPham = mysqli_query($conn, $querry);
+    $listSanPham = mysqli_query($conn, $querry . " LIMIT $offset , $rowsPerPage");
 }
 
-$re = mysqli_query($conn, "SELECT * FROM sanpham join thuonghieu on sanpham.MATH = thuonghieu.MATH join thongsokythuat on 
-sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP
-WHERE LOWER(TENSP) LIKE '%" . strtolower($id) . "%' OR LOWER(MASP) LIKE '%" . strtolower($id) . "%' or sanpham.MALOAISP = '$id' ");
+$re = mysqli_query($conn, $querry);
 $numRows = mysqli_num_rows($re);
 //tổng số trang
 $maxPage = ceil($numRows / $rowsPerPage);
@@ -353,7 +352,7 @@ $maxPage = ceil($numRows / $rowsPerPage);
                             <?php if ($_GET['page'] > 1) { ?>
                                 <li class="page-item">
                                     <a class="page-link"
-                                        href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . ($_GET['page'] - 1) . '&id=' . $id . '&order=' . $order; ?>">Previous</a>
+                                        href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . ($_GET['page'] - 1) . '&id=' . $id . '&order=' . $order . '&querry=' . $querry ?>">Previous</a>
                                 </li>
                             <?php } ?>
 
@@ -361,7 +360,7 @@ $maxPage = ceil($numRows / $rowsPerPage);
                             <?php for ($i = 1; $i <= $maxPage; $i++) { ?>
                                 <li class="page-item <?php echo ($_GET['page'] == $i) ? 'active' : ''; ?>">
                                     <a class="page-link"
-                                        href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . $i . '&id=' . $id . '&order=' . $order; ?>">
+                                        href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . $i . '&id=' . $id . '&order=' . $order . '&querry=' . $querry?>">
                                         <?php echo $i; ?>
                                     </a>
                                 </li>
@@ -371,7 +370,7 @@ $maxPage = ceil($numRows / $rowsPerPage);
                             <?php if ($_GET['page'] < $maxPage) { ?>
                                 <li class="page-item">
                                     <a class="page-link"
-                                        href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . ($_GET['page'] + 1) . '&id=' . $id . '&order=' . $order; ?>">Next</a>
+                                        href="<?php echo $_SERVER['PHP_SELF'] . '?page=' . ($_GET['page'] + 1) . '&id=' . $id . '&order=' . $order . '&querry=' . $querry ?>">Next</a>
                                 </li>
                             <?php } ?>
                         <?php } ?>

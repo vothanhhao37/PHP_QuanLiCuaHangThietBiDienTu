@@ -1,7 +1,7 @@
 <?php
 include '../Shared_Layout/header.php';
 $result = mysqli_query($conn, "SELECT * FROM khachhang WHERE khachhang.MAKH = '{$_SESSION['MAKH']}'");
-echo isset($_GET["check"]) ? $_GET["check"] : "";
+
 ?>
 
 
@@ -35,39 +35,58 @@ echo isset($_GET["check"]) ? $_GET["check"] : "";
                                         <div class="form-row">
                                             <div class="col form-group display-flex">
                                                 <div class="d-flex justify-content-between">
-                                                <label>Họ và tên</label>
-                                                <small  class="text-danger">this is an error</small>
-                                                </div>
-                                                <div >
-                                                    
-                                                    <input type="text" class="form-control" name="TENKH" id="TENKH" value="<?php if (isset($row['TENKH']))
-                                                        echo $row['TENKH'] ?>">
-
+                                                    <label>Họ và tên</label>
+                                                    <small class="text-danger">
+                                                        <?php if (isset($_GET['tenkh_error']))
+                                                            echo $_GET['tenkh_error'] ?>
+                                                        </small>
+                                                    </div>
+                                                    <div>
+                                                        <input type="text" class="form-control" name="TENKH" id="TENKH" value="<?php if (isset($row['TENKH']))
+                                                            echo $row['TENKH'] ?>">
                                                     </div>
                                                 </div>
-                                             
+
                                                 <div class="col form-group">
-                                                    <label>Địa chỉ</label>
+                                                    <div class="d-flex justify-content-between">
+                                                        <label>Địa chỉ</label>
+                                                        <small class="text-danger">
+                                                        <?php if (isset($_GET['diachi_error']))
+                                                            echo $_GET['diachi_error'] ?>
+                                                        </small>
+                                                    </div>
                                                     <div>
                                                         <input type="text" class="form-control" name="DIACHI" id="DIACHI" value="<?php if (isset($row['DIACHI']))
-                                                        echo $row['DIACHI'] ?>">
+                                                            echo $row['DIACHI'] ?>">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col form-group">
-                                                    <label>Số điện thoại</label>
+                                                <div class="d-flex justify-content-between">
+                                                        <label>Số điện thoại</label></label>
+                                                        <small class="text-danger">
+                                                        <?php if (isset($_GET['sdt_error']))
+                                                            echo $_GET['sdt_error'] ?>
+                                                        </small>
+                                                    </div>
                                                     <div>
                                                         <input type="text" class="form-control" name="SDT" id="SDT" value="<?php if (isset($row['SDT']))
-                                                        echo $row['SDT'] ?>">
+                                                            echo $row['SDT'] ?>">
 
                                                     </div>
                                                 </div>
                                                 <div class="col form-group">
-                                                    <label>Email</label>
+                                                <div class="d-flex justify-content-between">
+                                                        <label>Email</label></label>
+                                                        <small class="text-danger">
+                                                        <?php if (isset($_GET['email_error']))
+                                                            echo $_GET['email_error'] ?>
+                                                        </small>
+                                                    </div>
                                                     <div>
                                                         <input type="text" class="form-control" name="EMAIL" id="EMAIL" value="<?php if (isset($row['EMAIL']))
-                                                        echo $row['EMAIL'] ?>">
+                                                            echo $row['EMAIL'] ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -76,7 +95,7 @@ echo isset($_GET["check"]) ? $_GET["check"] : "";
                                                     <label>CMND</label>
                                                     <div>
                                                         <input type="text" class="form-control" name="CMND" id="CMND" value="<?php if (isset($row['CMND']))
-                                                        echo $row['CMND'] ?>">
+                                                            echo $row['CMND'] ?>">
 
                                                     </div>
                                                 </div>
@@ -85,18 +104,18 @@ echo isset($_GET["check"]) ? $_GET["check"] : "";
                                                     <div>
                                                         <input disabled type="text" class="form-control" name="TAIKHOAN"
                                                             id="TAIKHOAN" value="<?php if (isset($row['TAIKHOAN']))
-                                                        echo $row['TAIKHOAN'] ?>">
+                                                            echo $row['TAIKHOAN'] ?>">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-md-offset-2 col-md-10">
-                                                    <input onclick="Save_alert()" type="submit" value="Lưu" name="saveChanges"
+                                                    <input type="submit" value="Lưu" name="saveChanges"
                                                         class="btn btn-primary mr-2" id="save_info" />
-                                                        <input type="submit" value="Đổi mật khẩu" class="btn btn-light" />
+                                                    <a href="DoiMatKhau.php" class="btn btn-light">Đổi mật khẩu</a>
                                                 </div>
                                             </div>
-                                          
+
                                         </div>
                                 </div>
                             </div>
@@ -109,11 +128,10 @@ echo isset($_GET["check"]) ? $_GET["check"] : "";
 </section>
 
 <script>
-    function Save_alert() {
-        alert("Đã lưu")
-    }
+ 
 </script>
 
 <?php
 include '../Shared_Layout/footer.php';
 ?>
+

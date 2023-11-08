@@ -83,7 +83,7 @@
                         <p>Tìm kiếm và khám phá những mẫu điện thoại độc đáo và tiên tiến nhất.</p>
                         <a href="../LOAISANPHAM/DanhSachSanPham.php?id=LSP07"
                             class="btn btn-outline-primary rounded-pill">Xem ngay</a>
-                        <img src="../../Content/images/items/12.jpg" class="img-bg">
+                        
                     </div>
 
 
@@ -129,7 +129,7 @@
                         </p>
                         <a href="../LOAISANPHAM/DanhSachSanPham.php?id=LSP06"
                             class="btn btn-outline-primary rounded-pill">Xem ngay</a>
-                        <img src="../../Content/images/items/14.jpg" class="img-bg">
+                       
                     </div>
 
 
@@ -175,7 +175,7 @@
                             của bạn.</p>
                         <a href="../LOAISANPHAM/DanhSachSanPham.php?id=LSP08"
                             class="btn btn-outline-primary rounded-pill">Xem ngay</a>
-                        <img src="../../Content/images/items/14.jpg" class="img-bg">
+                       
                     </div>
 
 
@@ -257,8 +257,8 @@
                 <article class="card card-post">
                     <img src="../../Content/images/posts/1.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h6 class="title">Trade Assurance</h6>
-                        <p class="small text-uppercase text-muted">Order protection</p>
+                        <h6 class="title">Bảo hiểm giao dịch</h6>
+                        <p class="small text-uppercase text-muted">Bảo vệ đơn hàng</p>
                     </div>
                 </article> <!-- card.// -->
             </div> <!-- col.// -->
@@ -266,8 +266,8 @@
                 <article class="card card-post">
                     <img src="../../Content/images/posts/2.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h6 class="title">Pay anytime</h6>
-                        <p class="small text-uppercase text-muted">Finance solution</p>
+                        <h6 class="title">Thanh toán bất cứ khi nào bạn muốn</h6>
+                        <p class="small text-uppercase text-muted">Giải pháp tài chính</p>
                     </div>
                 </article> <!-- card.// -->
             </div> <!-- col.// -->
@@ -276,8 +276,8 @@
                     <img src="../../Content/images/posts/3.jpg" class="card-img-top">
 
                     <div class="card-body">
-                        <h6 class="title">Inspection solution</h6>
-                        <p class="small text-uppercase text-muted">Easy Inspection</p>
+                        <h6 class="title">Giải pháp kiểm tra</h6>
+                        <p class="small text-uppercase text-muted">Kiểm tra dễ dàng</p>
                     </div>
                 </article> <!-- card.// -->
             </div> <!-- col.// -->
@@ -285,8 +285,8 @@
                 <article class="card card-post">
                     <img src="../../Content/images/posts/4.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h6 class="title">Ocean and Air Shipping</h6>
-                        <p class="small text-uppercase text-muted">Logistic services</p>
+                        <h6 class="title">Vận chuyển qua đường hàng không</h6>
+                        <p class="small text-uppercase text-muted">Dịch vụ vận tải</p>
                     </div>
                 </article> <!-- card.// -->
             </div> <!-- col.// -->

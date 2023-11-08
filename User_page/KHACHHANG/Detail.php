@@ -49,8 +49,8 @@ $result = mysqli_query($conn, "SELECT * FROM khachhang
                                         <p class="mb-2">
                                             <?php echo $row['EMAIL']; ?>
                                         </p>
-                                        <a href="@Url.Action(" Edit")" class="btn btn-light btn-sm">Chỉnh sửa</a>
-                                    </div>
+                                        <a href="CaiDatThongTin.php" class="btn btn-light btn-sm">Chỉnh sửa</a>
+                                    </div>  
                                 </figure>
                                 <hr>
                                 <p>
