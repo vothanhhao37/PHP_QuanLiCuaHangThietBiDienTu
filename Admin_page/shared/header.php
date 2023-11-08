@@ -1,3 +1,9 @@
+<?php
+session_start();//nhớ
+if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) { 
+       header("location: ../HOME/Login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,17 +118,18 @@
             <a href="#" class="brand-link">
                 <img src="../../Content/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">Trang admin</span>
+                
             </a>
-
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
                         <img src="../../Content/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <span style="color: aliceblue; font-weight: 500; font-size: large;"><?php echo $_SESSION["user"] ?></span>
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"></a> <a href="logout.php"><i class="fa fa-sign-out-alt"></i></a>
+                         
                     </div>
                 </div>
 
@@ -155,7 +162,6 @@
                                 </p>
                             </a>
                         </li>
-                            if is admin show
                                 <li class="nav-item">
                                     <a href="../NHANVIEN/Index.php" class="nav-link">
                                         <i class="nav-icon ion ion-ios-people"></i>
@@ -202,13 +208,18 @@
                         </li>
                         <li class="nav-header">Tính toán</li>
                         <li class="nav-item">
-                            <a href="tinhtoansoluongbanhang.php" class="nav-link">
+                            <a href="../TinhToanSoLuongBanHang/Index.php" class="nav-link">
                                 <i class="nav-icon fas fa-box"></i>
                                 <p>
                                     Sản phẩm bán được
                                 </p>
                             </a>
 
+                        </li>
+                        <li class="nav-item">
+                            <a href="../HOME/Logout.php" class="nav-link">
+                            <i class="fa fa-sign-out-alt">Đăng xuất</i>
+                            </a>
                         </li>
                         <!-- make space at bottom of the sidebar -->
                         <li class="nav-item" style="height: 100px;"></li>
@@ -230,4 +241,3 @@
             require("../shared/function.php");
 
             ?>
-            

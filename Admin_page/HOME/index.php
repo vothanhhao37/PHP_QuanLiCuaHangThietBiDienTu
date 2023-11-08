@@ -1,6 +1,3 @@
-<?php
-
-?>
 
 <?php
 include("../shared/header.php");

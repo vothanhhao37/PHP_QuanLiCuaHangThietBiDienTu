@@ -58,7 +58,7 @@ include("../shared/header.php");
                         <div class="form-group">
                                 <label class="control-label col-md-2">Số lượng </label>
                                 <div class="col-md-10">
-                                        <input type="text" class="form-control" name="SOLUONG" required>
+                                        <input type="number" class="form-control" name="SOLUONG" required>
                                 </div>
                         </div>
 
