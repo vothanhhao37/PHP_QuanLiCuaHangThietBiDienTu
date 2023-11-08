@@ -115,7 +115,7 @@ LIMIT 1"
             <div class="col-md-8">
                 <h5 class="title-description">Mô tả sản phẩm</h5>
                 <p>
-                    @Model.MOTA
+                <?php echo $row['MOTA']; ?>
                 </p>
 
 
@@ -153,24 +153,24 @@ LIMIT 1"
                     <article class="media mb-3">
                         <a href="#"><img class="img-sm mr-3" src="../../Content/images/posts/3.jpg"></a>
                         <div class="media-body">
-                            <h6 class="mt-0"><a href="#">How to use this item</a></h6>
-                            <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
+                            <h6 class="mt-0"><a href="#">Iphone 15 rớt giá</a></h6>
+                            <p class="mb-2"> Vì trông không khác gì Iphone 14 nên Iphone 15 rớt giá thảm hại,... </p>
                         </div>
                     </article>
 
                     <article class="media mb-3">
                         <a href="#"><img class="img-sm mr-3" src="../../Content/images/posts/2.jpg"></a>
                         <div class="media-body">
-                            <h6 class="mt-0"><a href="#">New tips and tricks</a></h6>
-                            <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
+                            <h6 class="mt-0"><a href="#">Xiaomi 14 pro ra mắt</a></h6>
+                            <p class="mb-2">Buổi lễ ra mắt Xiaomi 14 pro ra măt ở Thường Châu, Trung Quốc,.... </p>
                         </div>
                     </article>
 
                     <article class="media mb-3">
                         <a href="#"><img class="img-sm mr-3" src="../../Content/images/posts/1.jpg"></a>
                         <div class="media-body">
-                            <h6 class="mt-0"><a href="#">New tips and tricks</a></h6>
-                            <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
+                            <h6 class="mt-0"><a href="#">Điện thoại màn hình gập có phải xu thế</a></h6>
+                            <p class="mb-2"> Những chiếc điện thoại màn hình gập hiện nay..... </p>
                         </div>
                     </article>
 

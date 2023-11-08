@@ -36,7 +36,7 @@ if (isset($_POST['TAIKHOAN']) && isset($_POST['MATKHAU'])) {
                 $_SESSION['SDT'] = $row['SDT'];
                 $_SESSION['DIACHI'] = $row['DIACHI'];
                 $_SESSION['EMAIL'] = $row['EMAIL'];
-				$slgh = "SELECT COUNT(giohang.SOLUONG) AS total FROM giohang JOIN khachhang ON giohang.MAKH = khachhang.MAKH WHERE giohang.MAKH = {$row['MAKH']}";
+				$slgh = "SELECT COUNT(giohang.SOLUONG) AS total FROM giohang JOIN khachhang ON giohang.MAKH = khachhang.MAKH WHERE giohang.MAKH = '{$row['MAKH']}'";
 	 			$result = mysqli_query($conn, $slgh);
 				$_SESSION['SLGH'] = $result; 
 				header("Location: ../HOME/index.php");

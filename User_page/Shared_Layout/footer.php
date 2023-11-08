@@ -14,7 +14,7 @@
                     </aside>
 
                     <aside class="col-md-5 col-6">
-                        <h6 class="title">Trợ giúp</h6>
+                        <h6 class="title" style="color:white">Trợ giúp</h6>
                         <ul class="list-unstyled">
                             <li> <a href="#">Liên hệ</a></li>
                             <li> <a href="#">Tình trạng đơn hàng</a></li>

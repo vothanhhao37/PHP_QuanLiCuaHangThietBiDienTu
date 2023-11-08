@@ -5,6 +5,7 @@ if (isset($_GET["id"])) {
     $id = trim(preg_replace('/\s+/', ' ', $_GET["id"]));
 } //Lọc bớt khoảng trắng
 $order = 'asc';
+
 if (isset($_GET["order"])) {
     $order = $_GET["order"];
 } // Kiểm tra thứ tự sắp xếp sản phẩm theo giá
@@ -18,12 +19,13 @@ $offset = ($_GET['page'] - 1) * $rowsPerPage;
 if(isset($_GET['querry'])) {
     $querry = $_GET['querry'];
 } 
-else 
-$querry = "SELECT * FROM sanpham join thuonghieu on sanpham.MATH = thuonghieu.MATH join thongsokythuat on 
-sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP
-WHERE LOWER(TENSP) LIKE '%" . strtolower($id) . "%' OR LOWER(MASP) LIKE '%" . strtolower($id) . "%' or sanpham.MALOAISP = '$id' OR LOWER(thuonghieu.TENTHUONGHIEU) LIKE '%" . strtolower($id) . "%'
-ORDER BY DONGIA $order";
-$listSanPham = mysqli_query($conn, $querry . " LIMIT $offset , $rowsPerPage");
+
+else {
+    $querry = "SELECT * FROM sanpham join thuonghieu on sanpham.MATH = thuonghieu.MATH join thongsokythuat on 
+    sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP   
+    WHERE LOWER(TENSP) LIKE '%" . strtolower($id) . "%' OR LOWER(MASP) LIKE '%" . strtolower($id) . "%' or sanpham.MALOAISP = '$id' OR LOWER(thuonghieu.TENTHUONGHIEU) LIKE '%" . strtolower($id) . "%'";
+}
+
 if (isset($_GET["filter"])) {
     
     $loaisanpham = $_GET["loaisanpham"];
@@ -31,18 +33,21 @@ if (isset($_GET["filter"])) {
     $thuonghieu = $_GET["thuonghieu"];
     $ram = $_GET["ram"];
     $rom = $_GET["rom"];
-    $giamin = $_GET["giamin"];
-    $giamax = $_GET["giamax"];
+    $giamin = intval($_GET["giamin"]);
+    $giamax = intval($_GET["giamax"]);
+    
     // Lọc theo loại sản phẩm
     $querry = "SELECT * FROM sanpham join thuonghieu on sanpham.MATH = thuonghieu.MATH join thongsokythuat on 
-    sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP
+    sanpham.MATSKT = thongsokythuat.MATSKT join loaisanpham on sanpham.MALOAISP = loaisanpham.MALOAISP 
     WHERE '$loaisanpham' LIKE CONCAT('%', loaisanpham.TENLOAISP, '%')
-        and '$thuonghieu' LIKE CONCAT('%', thuonghieu.TENTHUONGHIEU, '%')
-    ORDER BY DONGIA $order";
-
-    $listSanPham = mysqli_query($conn, $querry . " LIMIT $offset , $rowsPerPage");
+    and '$thuonghieu' LIKE CONCAT('%', thuonghieu.TENTHUONGHIEU, '%')
+        and '$hedieuhanh' LIKE CONCAT('%', thongsokythuat.HEDIEUHANH, '%')
+        and (sanpham.DONGIA between $giamin and $giamax)
+    ";
+    
 }
 
+$listSanPham = mysqli_query($conn, $querry . " order by DONGIA $order LIMIT $offset , $rowsPerPage");
 $re = mysqli_query($conn, $querry);
 $numRows = mysqli_num_rows($re);
 //tổng số trang
@@ -160,11 +165,11 @@ $maxPage = ceil($numRows / $rowsPerPage);
                         <div class="inner">
 
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-12">
                                     <label>Min</label>
                                     <input class="form-control" placeholder="Min" type="number" name="giaMin">
                                 </div>
-                                <div class="form-group text-right col-md-6">
+                                <div class="form-group col-md-12">
                                     <label>Max</label>
                                     <input class="form-control" placeholder="Max" type="number" name="giaMax">
                                 </div>
@@ -254,12 +259,12 @@ $maxPage = ceil($numRows / $rowsPerPage);
                         <strong class="mr-md-auto">
                             <?php echo mysqli_num_rows($re); ?> sản phẩm được tìm thấy
                         </strong>
-                        <a href="../LOAISANPHAM/DanhSachSanPham.php?order=desc&id=<?php echo $id; ?>"
+                        <a href="../LOAISANPHAM/DanhSachSanPham.php?<?php echo 'id=' . $id . '&order=desc'  . '&querry=' . $querry ?>"
                             class="btn btn-outline-primary mr-2">
                             Giá giảm dần <i class="fas fa-arrow-down"></i>
                         </a>
 
-                        <a href="../LOAISANPHAM/DanhSachSanPham.php?order=asc&id=<?php echo $id; ?>"
+                        <a href="../LOAISANPHAM/DanhSachSanPham.php?<?php echo 'id=' . $id . '&order=asc' . '&querry=' . $querry ?>"
                             class="btn btn-outline-primary">
                             Giá tăng dần <i class="fas fa-arrow-up"></i>
                         </a>
@@ -426,6 +431,7 @@ $maxPage = ceil($numRows / $rowsPerPage);
 
                 var Gmin = $("input[name='giaMin']").val();
                 var Gmax = $("input[name='giaMax']").val();
+                if(Gmax==0) Gmax = 999999999;
                 // Gửi dữ liệu bộc lọc đến action
 
                 $("input[name='loaisanpham']").val(LSP);
