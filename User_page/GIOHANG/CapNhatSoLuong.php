@@ -1,6 +1,6 @@
 <?php
 include("../../db_connect.php"); 
-session_start();
+include("../LOGIN_REQUIRED/LogIn_Required.php"); 
 $masp = $_POST['MASP'];
 $soluong = $_POST['SOLUONG'];
 $response = array();

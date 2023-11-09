@@ -1,6 +1,7 @@
 <?php
 include("../../db_connect.php");
-session_start();
+include("../LOGIN_REQUIRED/LogIn_Required.php"); 
+
 $result = mysqli_query($conn, "SELECT * FROM khachhang WHERE khachhang.MAKH = '{$_SESSION['MAKH']}'");
 if (isset($_POST["saveChanges"])) {
     $tenkh = $_POST["TENKH"];

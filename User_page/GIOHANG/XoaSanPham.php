@@ -1,6 +1,6 @@
 <?php
+include("../LOGIN_REQUIRED/LogIn_Required.php"); 
 include("../../db_connect.php");
-session_start();
 $masp = $_POST['MASP'];
 $response = array();
 // Tìm kiếm và cập nhật dữ liệu trong cơ sở dữ liệu

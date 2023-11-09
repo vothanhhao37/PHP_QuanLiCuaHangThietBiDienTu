@@ -1,5 +1,5 @@
 <?php
-session_start();
+include("../LOGIN_REQUIRED/LogIn_Required.php"); 
 include '../Shared_Layout/header.php';
 
 $statement = "";

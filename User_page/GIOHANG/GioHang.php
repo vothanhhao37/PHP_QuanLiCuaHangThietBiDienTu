@@ -1,6 +1,6 @@
 <title>Giỏ hàng</title>
 <?php
-session_start();
+include("../LOGIN_REQUIRED/LogIn_Required.php"); 
 if(!isset($_SESSION['MAKH']))
 {
     header("Location: ../AUTHENTICATION/DangNhap.php");

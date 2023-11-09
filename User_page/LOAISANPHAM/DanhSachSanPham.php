@@ -13,7 +13,7 @@ if (isset($_GET["order"])) {
 if (!isset($_GET['page'])) {
     $_GET['page'] = 1;
 }
-$rowsPerPage = 7; //số mẩu tin trên mỗi trang, giả sử là 4
+$rowsPerPage = 7; //số mẩu tin trên mỗi trang, giả sử là 7
 
 $offset = ($_GET['page'] - 1) * $rowsPerPage;
 if(isset($_GET['querry'])) {

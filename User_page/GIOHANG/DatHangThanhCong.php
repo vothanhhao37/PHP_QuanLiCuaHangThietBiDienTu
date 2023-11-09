@@ -2,7 +2,7 @@
 <?php 
 
 include("../../db_connect.php");
-session_start();
+include("../LOGIN_REQUIRED/LogIn_Required.php"); 
 include '../Shared_Layout/header.php';
 function LayMaHoaDon($db) {
     // Lấy danh sách các MAKH từ bảng HOADON

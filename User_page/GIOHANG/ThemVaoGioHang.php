@@ -1,5 +1,5 @@
 <?php
-session_start();
+include("../LOGIN_REQUIRED/LogIn_Required.php"); 
 include("../../db_connect.php");
 if (!isset($_SESSION['MAKH'])) {
     header('Location: ../AUTHENTICATION/DangNhap.php');
