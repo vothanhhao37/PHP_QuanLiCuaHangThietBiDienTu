@@ -216,6 +216,16 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
                             </a>
 
                         </li>
+                        <li class="nav-header">Bài tập cá nhân</li>
+                        <li class="nav-item">
+                            <a href="../BAITAPCANHAN/BTCaNhan_621333684" class="nav-link">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>
+                                    Võ Thanh Hào
+                                </p>
+                            </a>
+
+                        </li>
                         <li class="nav-item">
                             <a href="../HOME/Logout.php" class="nav-link">
                             <i class="fa fa-sign-out-alt">Đăng xuất</i>
