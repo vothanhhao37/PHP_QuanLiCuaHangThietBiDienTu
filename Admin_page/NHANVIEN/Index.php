@@ -4,7 +4,8 @@ require("../shared/header.php")
 
 <!-- Start body -->
 <?php
-
+if (isset($_GET['input'])) $input = $_GET['input'];
+else $input = "";
 if(isset($_POST["manv"])){
     $sql = "SELECT MANV, TENNV, DIACHI, SDT, EMAIL, CMND, CHUCVU, GIOITINH FROM nhanvien ORDER BY MANV;";    
 }
@@ -25,6 +26,24 @@ if (!isset($_GET['page'])) {
 $offset = ($_GET['page'] - 1) * $rowsPerPage;
 //lấy $rowsPerPage mẩu tin, bắt đầu từ vị trí $offset
 $list = mysqli_fetch_all($result,MYSQLI_NUM);
+
+if ($input != "")
+{
+    $tempList = [];
+    foreach($list as $key => $index)
+    {
+        $str = "";
+        for ($i = 0; $i < count($index); $i++)
+        {
+            $str .= (string)$index[$i];
+        }
+        if (strpos($str,$input) !== false)
+        {
+            $tempList[] = $index;
+        }
+    }
+    $list = $tempList;
+}
 ?>
 <style>
     html
@@ -34,8 +53,13 @@ $list = mysqli_fetch_all($result,MYSQLI_NUM);
 </style>
 <div class="container">
     <h2 style="text-align:center">DANH SÁCH NHÂN VIÊN</h2>
-
-    <a href="Create.php" class="btn btn-primary m-2">Thêm nhân viên</a>
+    <div class="d-flex justify-content-between">
+        <a href="Create.php" class="btn btn-primary m-2">Tạo mới</a>
+        <form action="" method="get">
+            <input type="text" name="input" value="<?php echo $input; ?>" placeholder="Tìm kiếm">
+            <input type="submit" value="Tìm" name="search" class="btn btn-primary">
+        </form>
+    </div>
     <?php include("../shared/alert.php"); ?>
     <table class="table">
     <form action="" method="post">
@@ -117,16 +141,15 @@ $list = mysqli_fetch_all($result,MYSQLI_NUM);
     </table>
     <div style="display: flex; width: 100%;">
             <?php
-            $re = mysqli_query($conn, 'select * from nhanvien');
-            $numRows = mysqli_num_rows($re);
+            $numRows = count($list);
             // gắn thêm nút back
             if ($_GET['page'] > 1)
-                echo "<a class='btn btn-primary' href=" . $_SERVER['PHP_SELF'] . "?page=" . ($_GET['page'] - 1) . ">Back</a> ";
+                echo "<a class='btn btn-primary' href='" . $_SERVER['PHP_SELF'] . "?page=" . ($_GET['page'] - 1) . "&input=". $input . "'>Back</a> ";
             else
                 echo "<button class='btn btn-default' disabled>Back</button>";
             //Trang đầu
-            echo "<a class=' btn btn-primary' href="
-                . $_SERVER['PHP_SELF'] . "?page=" . "1" . ">Trang đầu" . "</a> ";
+            echo "<a class=' btn btn-primary' href='"
+                . $_SERVER['PHP_SELF'] . "?page=" . "1" . "&input=". $input . "'>Trang đầu" . "</a> ";
             //tổng số trang
             $maxPage = ($numRows % $rowsPerPage) ? floor($numRows / $rowsPerPage) + 1 : floor($numRows / $rowsPerPage);
             $delta = 3; // số lượng trang hiển thị 2 bên
@@ -137,8 +160,8 @@ $list = mysqli_fetch_all($result,MYSQLI_NUM);
                     if ($i == $_GET['page'])
                         echo '<b class="btn btn-default" >Trang ' . $i . '</b> '; //trang hiện tại
                     else
-                        echo "<a class=' btn btn-primary' href="
-                            . $_SERVER['PHP_SELF'] . "?page=" . $i . ">" . $i . "</a> ";
+                        echo "<a class=' btn btn-primary' href='"
+                            . $_SERVER['PHP_SELF'] . "?page=" . $i . "&input=". $input . "'>" . $i . "</a> ";
                 }
             } else {
                 for ($i = $_GET['page'] - $delta; $i <= $_GET['page'] + $delta; $i++) //tạo link tương ứng tới các trang
@@ -146,18 +169,18 @@ $list = mysqli_fetch_all($result,MYSQLI_NUM);
                     if ($i == $_GET['page'])
                         echo '<b class="btn btn-default w-40" >Trang ' . $i . '</b> '; //trang hiện tại
                     else if ($i > 0 && $i <= $maxPage)
-                        echo "<a class=' btn btn-primary w-40' href="
-                            . $_SERVER['PHP_SELF'] . "?page=" . $i . ">" . $i . "</a> ";
+                        echo "<a class=' btn btn-primary w-40' href='"
+                            . $_SERVER['PHP_SELF'] . "?page=" . $i . "&input=". $input . "'>" . $i . "</a> ";
                 }
             }
             echo "</div>";
             // Trang cuối
-            echo "<a class=' btn btn-primary' href="
-                . $_SERVER['PHP_SELF'] . "?page=" . $maxPage . ">Trang cuối" . "</a> ";
+            echo "<a class=' btn btn-primary' href='"
+                . $_SERVER['PHP_SELF'] . "?page=" . $maxPage . "&input=". $input . "'>Trang cuối" . "</a> ";
             //gắn thêm nút Next
             if ($_GET['page'] < $maxPage)
-                echo "<a class='btn btn-primary' href=" . $_SERVER['PHP_SELF'] . "?page="
-                    . ($_GET['page'] + 1) . ">Next</a>";
+                echo "<a class='btn btn-primary' href='" . $_SERVER['PHP_SELF'] . "?page="
+                    . ($_GET['page'] + 1) . "&input=". $input . "'>Next</a>";
             else
                 echo "<button class='btn btn-default' disabled>Next</button>";
             ?>
