@@ -26,7 +26,12 @@ $offset = ($_GET['page'] - 1) * $rowsPerPage;
 //lấy $rowsPerPage mẩu tin, bắt đầu từ vị trí $offset
 $list = mysqli_fetch_all($result,MYSQLI_NUM);
 ?>
-
+<style>
+    html
+    {
+        font-size: 15px;
+    }
+</style>
 <div class="container">
     <h2 style="text-align:center">DANH SÁCH NHÂN VIÊN</h2>
 
@@ -60,6 +65,9 @@ $list = mysqli_fetch_all($result,MYSQLI_NUM);
             <th>
                 Giới tính
             </th>
+            <th>
+
+            </th>
         </tr>
     </form>
     <?php
@@ -92,7 +100,7 @@ $list = mysqli_fetch_all($result,MYSQLI_NUM);
                 <td>
                     <?php echo $row[7] ?>
                 </td>
-                <td width="120px">
+                <td style="min-width: 120px;">
                     <a href="./Edit.php?id=<?php echo $row[0] ?>"><img src="../../Images/edit.png" alt="Edit" class="icon"
                             width="30"></a>
                     <a href="./Details.php?id=<?php echo $row[0] ?>"><img src="../../Images/details.png" alt="detail"

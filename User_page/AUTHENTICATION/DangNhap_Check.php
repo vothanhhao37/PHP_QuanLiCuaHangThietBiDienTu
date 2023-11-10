@@ -29,10 +29,11 @@ if (isset($_POST['TAIKHOAN']) && isset($_POST['MATKHAU'])) {
 		if (mysqli_num_rows($result) === 1) {
 			$row = mysqli_fetch_assoc($result);
 			if ($row['TAIKHOAN'] === $taikhoan && $row['MATKHAU'] === $matkhau) {
-				
-                $_SESSION['TENKH'] = $row['TENKH'];
+
+				$_SESSION['TENKH'] = $row['TENKH'];
 				$_SESSION['TAIKHOAN'] = $row['TAIKHOAN'];
 				$_SESSION['MAKH'] = $row['MAKH'];
+
                 $_SESSION['SDT'] = $row['SDT'];
                 $_SESSION['DIACHI'] = $row['DIACHI'];
                 $_SESSION['EMAIL'] = $row['EMAIL'];
@@ -41,7 +42,7 @@ if (isset($_POST['TAIKHOAN']) && isset($_POST['MATKHAU'])) {
 				$_SESSION['SLGH'] = $result; 
 				header("Location: ../HOME/index.php");
 				exit();
-			} 
+			}
 		} else {
 			header("Location: DangNhap.php?error=Sai tên dăng nhập hoặc mật khẩu&$user_data");
 			exit();
