@@ -210,7 +210,16 @@
                             </a>
 
                         </li>
+                        <li class="nav-header">Bài tập cá nhân</li>
+                        <li class="nav-item">
+                            <a href="tinhtoansoluongbanhang.php" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Võ Thanh Hào
+                                </p>
+                            </a>
 
+                        </li>
 
                     </ul>
                 </nav>
