@@ -1,5 +1,7 @@
 <?php
+include("../LOGIN_REQUIRED/LogIn_Required.php"); 
 include '../Shared_Layout/header.php';
+
 ?>
 <title>Đơn đặt hàng đã đặt</title>
 

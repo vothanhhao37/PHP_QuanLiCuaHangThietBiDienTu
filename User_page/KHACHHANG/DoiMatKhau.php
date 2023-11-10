@@ -1,5 +1,8 @@
 <?php
+include("../LOGIN_REQUIRED/LogIn_Required.php"); 
 include '../Shared_Layout/header.php';
+
+
 $result = mysqli_query($conn, "SELECT * FROM khachhang WHERE khachhang.MAKH = '{$_SESSION['MAKH']}'");
 
 ?>

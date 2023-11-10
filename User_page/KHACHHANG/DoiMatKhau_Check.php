@@ -1,5 +1,6 @@
 <?php
-session_start();
+include("../LOGIN_REQUIRED/LogIn_Required.php"); 
+
 include "../../db_connect.php";
 
 if (isset($_POST['MATKHAU']) && isset($_POST['MATKHAUMOI']) && isset($_POST['CONFIRM_MATKHAU'])) {
