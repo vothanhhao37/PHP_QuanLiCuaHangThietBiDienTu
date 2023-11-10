@@ -3,7 +3,8 @@
 include("../shared/header.php");
 ?>
 <?php
-$sql = "SELECT MAHOADON, NGAYTAO, TINHTRANGDONHANG, khachhang.TENKH, nhanvien.TENNV, khachhang.MAKH FROM ((hoadon JOIN khachhang ON hoadon.MAKH = khachhang.MAKH) JOIN nhanvien ON hoadon.MANV = nhanvien.MANV)";
+$sql = "SELECT MAHOADON, NGAYTAO, TINHTRANGDONHANG, khachhang.TENKH, nhanvien.TENNV, khachhang.MAKH 
+FROM ((hoadon JOIN khachhang ON hoadon.MAKH = khachhang.MAKH) JOIN nhanvien ON hoadon.MANV = nhanvien.MANV)";
 $result = mysqli_query($conn, $sql);
 
 $rowsPerPage = 5; //số mẩu tin trên mỗi trang
