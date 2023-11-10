@@ -1,5 +1,6 @@
 <?php
-include("../../db_connect.php");
+require("../../db_connect.php");
+require("../shared/function.php");
 $sql = "SELECT MATSKT from thongsokythuat ORDER BY MATSKT DESC LIMIT 1";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);

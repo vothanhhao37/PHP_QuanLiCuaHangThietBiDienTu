@@ -1,6 +1,7 @@
 <?php
 include("../shared/header.php");
-include("../../db_connect.php");
+require("../../db_connect.php");
+require("../shared/function.php");
 ?>
 
 

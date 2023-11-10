@@ -1,7 +1,7 @@
 <?php
-require("../shared/header.php")
-    ?>
-<?php
+require("../shared/header.php");
+require("../../db_connect.php");
+require("../shared/function.php");
 
 $alert_type = "none";
 $alert = "";

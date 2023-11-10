@@ -34,7 +34,7 @@ LIMIT 1"
             <main class="col-md-5" style="padding-left:7%">
                 <article class="product-info-aside">
 
-                    <h2 class="title mt-3"> <?php echo $row['TENSP']; ?>"</h2>
+                    <h2 class="title mt-3"> <?php echo $row['TENSP']; ?></h2>
 
                     <div class="rating-wrap my-3">
                         <ul class="rating-stars">

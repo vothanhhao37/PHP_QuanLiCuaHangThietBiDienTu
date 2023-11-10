@@ -1,11 +1,12 @@
 <?php
-session_start();//nhớ
-if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) { 
-       header("location: ../HOME/Login.php");
+session_start(); //nhớ
+if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
+    header("location: ../HOME/Login.php");
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -35,12 +36,13 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
     <link href="../../Content/admin/dist/css/styleAdmin.css" rel="stylesheet" />
     <link href="../../Content/fonts/fontawesome/css/all.min.css" rel="stylesheet" />
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
         <!-- Preloader -->
         <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -49,7 +51,7 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="../HOME/index.php" class="nav-link">Trang chủ</a>
                 </li>
-                
+
             </ul>
 
             <!-- Right navbar links -->
@@ -108,7 +110,7 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
-               
+
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -118,7 +120,7 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
             <a href="#" class="brand-link">
                 <img src="../../Content/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">Trang admin</span>
-                
+
             </a>
             <!-- Sidebar -->
             <div class="sidebar">
@@ -129,11 +131,11 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
                         <span style="color: aliceblue; font-weight: 500; font-size: large;"><?php echo $_SESSION["user"] ?></span>
                     </div>
                     <div class="info">
-                         
+
                     </div>
                 </div>
 
-            
+
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -149,7 +151,10 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
                         </li>
                         <li class="nav-item">
                             <a href="../CHITIETHOADON/Index.php" class="nav-link">
-                            <i class="nav-icon fas fa-file-invoice"></i>                                    Quản lí chi tiết hóa đơn
+                                <i class="nav-icon fas fa-file-invoice"></i>
+                                <p>
+                                    Quản lí chi tiết hóa đơn
+
                                 </p>
                             </a>
 
@@ -162,15 +167,15 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
                                 </p>
                             </a>
                         </li>
-                                <li class="nav-item">
-                                    <a href="../NHANVIEN/Index.php" class="nav-link">
-                                        <i class="nav-icon ion ion-ios-people"></i>
-                                        <p>
-                                            Quản lí nhân viên
-                                        </p>
-                                    </a>
+                        <li class="nav-item">
+                            <a href="../NHANVIEN/Index.php" class="nav-link">
+                                <i class="nav-icon ion ion-ios-people"></i>
+                                <p>
+                                    Quản lí nhân viên
+                                </p>
+                            </a>
 
-                                </li>
+                        </li>
                         <li class="nav-item">
                             <a href="../KHACHHANG/Index.php" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
@@ -219,7 +224,7 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
                         <li class="nav-header">Bài tập cá nhân</li>
                         <li class="nav-item">
                             <a href="../BAITAPCANHAN/BTCaNhan_621333684" class="nav-link">
-                                <i class="nav-icon fas fa-box"></i>
+                                <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Võ Thanh Hào
                                 </p>
@@ -227,8 +232,20 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
 
                         </li>
                         <li class="nav-item">
+                            <a href="../BAITAPCANHAN/vochinhan.php" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Võ Chí Nhân
+                                </p>
+                            </a>
+
+                        </li>
+                        <li class="nav-item">
                             <a href="../HOME/Logout.php" class="nav-link">
-                            <i class="fa fa-sign-out-alt">Đăng xuất</i>
+                                <i class="nav-icon fa fa-sign-out-alt"></i>
+                                <p>
+                                    Đăng xuất
+                                </p>
                             </a>
                         </li>
                         <!-- make space at bottom of the sidebar -->
@@ -239,15 +256,10 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
             </div>
             <!-- /.sidebar -->
         </aside>
-       
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
 
             <!-- Render body here -->
             <!-- Content Header (Page header) -->
             <!-- Link some php page -->
-            <?php 
-            require("../../db_connect.php"); 
-            require("../shared/function.php");
-
-            ?>

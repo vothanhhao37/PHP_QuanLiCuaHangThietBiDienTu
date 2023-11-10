@@ -1,6 +1,8 @@
 
 <?php
 include("../shared/header.php");
+require("../../db_connect.php");
+require("../shared/function.php");
 ?>
 <section class="content">
     <div class="container-fluid">

@@ -1,5 +1,6 @@
 <?php
-include("../../db_connect.php");
+require("../../db_connect.php");
+require("../shared/function.php");
 $maTSKT = $_GET['id'];
 $sql = "SELECT MATSKT, HEDIEUHANH, RAM, ROM, KICHCOMANHINH, VIXULY, PIN, CAMERA  FROM thongsokythuat WHERE MATSKT = '$maTSKT'";
 $result = mysqli_query($conn, $sql);
