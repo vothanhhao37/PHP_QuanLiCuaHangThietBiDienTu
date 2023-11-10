@@ -44,7 +44,7 @@ $list = mysqli_fetch_all($result, MYSQLI_NUM);
                                         <input name="masp" type="submit" value="Mã sản phẩm"
                                                 style="border: none; background: none; font-weight: bold;">
                                 </th>
-                                <th>
+                                <th >
                                         <input name="tensp" type="submit" value="Tên sản phẩm"
                                                 style="border: none; background: none; font-weight: bold;">
                                 </th>
@@ -90,7 +90,7 @@ $list = mysqli_fetch_all($result, MYSQLI_NUM);
                                         <?php echo $row[5] ?>
                                 </td>
 
-                                <td>
+                                <td style="min-width: 120px;">
                                         <a href="./Edit.php?maSP=<?php echo $row[0] ?>">
                                                 <img src="../../Images/edit.png" alt="Edit" class="icon" width="30px">
                                         </a>
