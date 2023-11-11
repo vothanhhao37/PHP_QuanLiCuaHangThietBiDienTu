@@ -241,6 +241,15 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
 
                         </li>
                         <li class="nav-item">
+                            <a href="../BAITAPCANHAN/trancaophong.php" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Trần Cao Phong
+                                </p>
+                            </a>
+
+                        </li>
+                        <li class="nav-item">
                             <a href="../HOME/Logout.php" class="nav-link">
                                 <i class="nav-icon fa fa-sign-out-alt"></i>
                                 <p>
