@@ -1,6 +1,4 @@
-<?php
-	require("../../../shared/header.php");
-?>
+
 	<style type="text/css">
 		.heading {
 			background-color: red;
@@ -156,6 +154,3 @@
 			</tr>
 		</table>
 	</form>
-<?php
-	require("../../../shared/footer.php");
-?>

@@ -9,7 +9,6 @@
             background-color: antiquewhite;
         }
 
-        label {}
     </style>
     <?php
     $input = 0;

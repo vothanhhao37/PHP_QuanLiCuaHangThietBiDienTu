@@ -1,6 +1,4 @@
-<?php 
-	require("../../../shared/header.php")
-?>
+
 
 	<?php
 	if (isset($_POST['a'])) {
@@ -106,6 +104,3 @@
 			<?php echo $alert ?>
 		</p>
 	</form>
-	<?php 
-	require("../../../shared/footer.php")
-	?>
