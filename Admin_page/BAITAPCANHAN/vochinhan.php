@@ -45,7 +45,6 @@
 <h3>SQL - Quan ly ban sua</h3>
 <ul>
     <li><a href="./VoChiNhan63133298/QuanLyBanSua/login.php">Đăng nhập</a></li>
-    <li><a href="./VoChiNhan63133298/QuanLyBanSua/suaitem.php">Sản phẩm sửa</a></li>
     <li><a href="./VoChiNhan63133298/QuanLyBanSua/themsua.php">Thêm sữa</a></li>
     <li><a href="./VoChiNhan63133298/QuanLyBanSua/thongtinkh.php">Thông tin khách hàng</a></li>
     <li><a href="./VoChiNhan63133298/QuanLyBanSua/thongtinsanpham.php">Thông tin sản phẩm</a></li>
