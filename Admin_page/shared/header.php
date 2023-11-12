@@ -224,18 +224,24 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
                         <li class="nav-header">Bài tập cá nhân</li>
                         <li class="nav-item">
                             <a href="../BTCaNhan_Page/VoThanhHao.php" class="nav-link">
-                                <i class="nav-icon fas fa-box"></i>
+                                <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Võ Thanh Hào
                                 </p>
                             </a>
 
                         </li>
+                       
                         <li class="nav-item">
-                            <a href="../BTCaNhan_Page/SaiVanQuangTruong.php" class="nav-link">
-                                <i class="nav-icon fas fa-box"></i>
+                            <a href="../BAITAPCANHAN/trancaophong.php" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
                                 <p>
-                                    Sái Văn Quang Trường
+                                    Trần Cao Phong
+                                </p>
+                            </a>
+
+                        </li>
+                        <li class="nav-item">
                             <a href="../BAITAPCANHAN/vochinhan.php" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
@@ -245,10 +251,10 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
 
                         </li>
                         <li class="nav-item">
-                            <a href="../BAITAPCANHAN/trancaophong.php" class="nav-link">
+                            <a href="../BAITAPCANHAN/SaiVanQuangTruong.php" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
-                                    Trần Cao Phong
+                                    Sái Văn Quang Trường
                                 </p>
                             </a>
 
