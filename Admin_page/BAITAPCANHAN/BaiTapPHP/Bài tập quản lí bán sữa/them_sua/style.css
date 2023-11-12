@@ -1,0 +1,14 @@
+
+        table {
+            background-color: pink;
+        }
+
+        table th {
+            background-color: orange;
+            font-style: vni-times;
+            color: white;
+        }
+
+        td {
+            padding: 3px;
+        }

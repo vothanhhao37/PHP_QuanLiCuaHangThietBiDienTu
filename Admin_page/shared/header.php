@@ -113,7 +113,7 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="overflow-y: auto;">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
                 <img src="../../Content/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -218,7 +218,7 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
                         </li>
                         <li class="nav-header">Bài tập cá nhân</li>
                         <li class="nav-item">
-                            <a href="../BAITAPCANHAN/BTCaNhan_621333684" class="nav-link">
+                            <a href="../BTCaNhan_Page/VoThanhHao.php" class="nav-link">
                                 <i class="nav-icon fas fa-box"></i>
                                 <p>
                                     Võ Thanh Hào
@@ -226,6 +226,16 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
                             </a>
 
                         </li>
+                        <li class="nav-item">
+                            <a href="../BTCaNhan_Page/SaiVanQuangTruong.php" class="nav-link">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>
+                                    Sái Văn Quang Trường
+                                </p>
+                            </a>
+
+                        </li>
+                       
                         <li class="nav-item">
                             <a href="../HOME/Logout.php" class="nav-link">
                             <i class="fa fa-sign-out-alt">Đăng xuất</i>
