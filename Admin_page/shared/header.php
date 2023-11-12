@@ -251,7 +251,7 @@ if (!(isset($_SESSION["user"]) && $_SESSION["pass"])) {
 
                         </li>
                         <li class="nav-item">
-                            <a href="../BAITAPCANHAN/SaiVanQuangTruong.php" class="nav-link">
+                            <a href="../BTCaNhan_Page/SaiVanQuangTruong.php" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Sái Văn Quang Trường
