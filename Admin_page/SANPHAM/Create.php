@@ -1,5 +1,7 @@
 <?php
-include("../../db_connect.php");
+require("../../db_connect.php");
+require("../shared/function.php");
+
 $sql = "SELECT MASP from sanpham ORDER BY MASP DESC LIMIT 1";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);

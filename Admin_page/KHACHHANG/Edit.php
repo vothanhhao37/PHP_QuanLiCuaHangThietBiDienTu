@@ -1,5 +1,6 @@
 <?php
-include("../../db_connect.php");
+require("../../db_connect.php");
+require("../shared/function.php");
 $maKH = $_GET['id'];
 $sql = "SELECT MAKH, TENKH, DIACHI, SDT, EMAIL, CMND, TAIKHOAN, MATKHAU  FROM khachhang WHERE MAKH = '$maKH'";
 $result = mysqli_query($conn, $sql);

@@ -69,7 +69,8 @@ session_start();
 
 </html>
 <?php
-include("../../db_connect.php");
+require("../../db_connect.php");
+require("../shared/function.php");
 if (isset($_POST["dangnhap"])) {
 
     if (empty($_POST["taikhoan"]) || empty($_POST["matkhau"])) {

@@ -1,5 +1,7 @@
 <?php
-require("../shared/header.php")
+require("../shared/header.php");
+require("../../db_connect.php");
+require("../shared/function.php");
     ?>
 <?php
 $maNV = $_GET['id'];

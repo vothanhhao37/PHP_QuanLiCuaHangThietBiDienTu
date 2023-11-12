@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        input[type="text"]
+        {
+            width: 100%;
+        }
+        textarea
+        {
+            width: 100%;
+        }
+        fieldset
+        {
+            display: inline-block;
+            padding: 0px 50px;
+        }
+    </style>
+    <fieldset>
+        <legend>Enter your information:</legend>
+        <form action="./xulyThongTin.php" method="post">
+            <table>
+                <tr>
+                    <td>Họ tên: </td>
+                    <td>
+                        <input type="text" name="name" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ: </td>
+                    <td>
+                        <input type="text" name="address" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại:  </td>
+                    <td>
+                        <input style="width:50%;" type="text" name="pnumber" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Giới tính: </td>
+                    <td>
+                <input type="radio" name="sex" value="male" checked> Nam  
+                <input type="radio" name="sex" value="female"> Nữ 
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quốc tịch: </td>
+                    <td>
+                        <select name="region">
+                            <option value="region_vn">Viet Nam</option>
+                            <option value="region_usa">My</option>
+                            <option value="region_kr">Han Quoc</option>
+                            <option value="region_cn">Trung Quoc</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Các môn đã học:</td>
+                    <td>
+                        <input type="checkbox" name="subject_php" value="PHP&MySQL"> PHP&MySQL
+                        <input type="checkbox" name="subject_csharp" value="C#"> C#
+                        <input type="checkbox" name="subject_xml" value="XML"> XML
+                        <input type="checkbox" name="subject_python" value="Python"> Python
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ghi chú:  </td>
+                    <td>
+                        <textarea name="note" id="" cols="40" rows="5"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="2">
+                        <input type="submit" value="Gửi" name="btn_send">
+                        <input type="reset" value="Hủy" name="btn_cancel">
+                    </td>
+                </tr>
+            </table>
+        </form>
+      </fieldset>
+</body>
+</html>

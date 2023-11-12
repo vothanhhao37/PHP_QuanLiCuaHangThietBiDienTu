@@ -2,7 +2,8 @@
 include("../shared/header.php");
 ?>
 <?php
-include("../../db_connect.php");
+require("../../db_connect.php");
+require("../shared/function.php");
 
 $sql = "SELECT MANV from nhanvien ORDER BY MANV DESC LIMIT 1";
 $result = mysqli_query($conn, $sql);
